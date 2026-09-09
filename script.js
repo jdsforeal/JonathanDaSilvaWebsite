@@ -26,7 +26,9 @@ const slides = [
    RÉGLAGES DU SLIDESHOW
    ========================= */
 
-setInterval(nextSlide, 5500);
+const SLIDE_DURATION = 5500;
+const DESKTOP_RETURN_TRANSITION_DURATION = 2300;
+const MOBILE_MENU_TRANSITION_DURATION = 500;
 
 
 /* =========================
@@ -48,6 +50,18 @@ const instagramLink = document.querySelector(
     ".instagram-link"
 );
 
+const mobileMenuToggle = document.querySelector(
+    ".mobile-menu-toggle"
+);
+
+const mobileMenu = document.querySelector(
+    ".mobile-menu"
+);
+
+const mobileMenuLinks = document.querySelectorAll(
+    ".mobile-menu-link"
+);
+
 
 /* =========================
    ÉTAT DU SLIDESHOW
@@ -61,6 +75,10 @@ let hiddenImage = imageB;
 let slideshowTimer = null;
 
 let isNavPreviewActive = false;
+let desktopResumeTimer = null;
+
+let isMobileMenuOpen = false;
+let mobileResumeTimer = null;
 
 
 /* =========================
@@ -127,7 +145,7 @@ function showSlide(index) {
 
 function nextSlide() {
 
-    if (isNavPreviewActive) {
+    if (isNavPreviewActive || isMobileMenuOpen) {
         return;
     }
 
@@ -167,7 +185,7 @@ function startSlideshow() {
 
     stopSlideshow();
 
-    if (isNavPreviewActive) {
+    if (isNavPreviewActive || isMobileMenuOpen) {
         return;
     }
 
@@ -193,53 +211,66 @@ mainNav.addEventListener("mouseenter", () => {
 
     isNavPreviewActive = true;
 
+    if (desktopResumeTimer !== null) {
+        clearTimeout(desktopResumeTimer);
+        desktopResumeTimer = null;
+    }
+
     stopSlideshow();
 
 });
 
 
 /* =========================
-   APERÇU NAVIGATION
+   APERÇU NAVIGATION DESKTOP
    ========================= */
 
-navLinks.forEach((link) => {
+const canHover = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+).matches;
 
-    link.addEventListener("mouseenter", () => {
+if (canHover) {
 
-        hero.classList.add("is-nav-preview");
+    navLinks.forEach((link) => {
 
-        const previewImage = link.dataset.preview;
+        link.addEventListener("mouseenter", () => {
 
-        const previewPosition =
-            link.dataset.position || "center center";
+            hero.classList.add("is-nav-preview");
 
-        crossfadeTo(
-            previewImage,
-            previewPosition
-        );
+            const previewImage = link.dataset.preview;
+
+            const previewPosition =
+                link.dataset.position || "center center";
+
+            crossfadeTo(
+                previewImage,
+                previewPosition
+            );
+
+        });
 
     });
 
-});
 
 /* =========================
-   PRÉCHARGEMENT
-   DES IMAGES DE NAVIGATION
-   ========================= */
+    PRÉCHARGEMENT DES IMAGES NAV
+    ========================= */
 
-navLinks.forEach((link) => {
+    navLinks.forEach((link) => {
 
-    const src = link.dataset.preview;
+        const src = link.dataset.preview;
 
-    if (src) {
+        if (src) {
 
-        const image = new Image();
+            const image = new Image();
 
-        image.src = src;
+            image.src = src;
 
-    }
+        }
 
-});
+    });
+
+}
 
 
 /* =========================
@@ -269,17 +300,107 @@ mainNav.addEventListener("mouseleave", () => {
 
     stopSlideshow();
 
-    setTimeout(() => {
+    if (desktopResumeTimer !== null) {
+        clearTimeout(desktopResumeTimer);
+    }
+
+    desktopResumeTimer = setTimeout(() => {
 
         startSlideshow();
 
-    }, 2300);
+        desktopResumeTimer = null;
+
+    }, DESKTOP_RETURN_TRANSITION_DURATION);
 
 });
 
+/* =========================
+   MENU MOBILE
+   ========================= */
+
+function openMobileMenu() {
+
+    isMobileMenuOpen = true;
+
+    if (mobileResumeTimer !== null) {
+        clearTimeout(mobileResumeTimer);
+        mobileResumeTimer = null;
+    }
+
+    stopSlideshow();
+
+    mobileMenu.classList.add("is-open");
+    mobileMenuToggle.classList.add("is-open");
+
+    mobileMenuToggle.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+    mobileMenuToggle.setAttribute(
+        "aria-label",
+        "Close menu"
+    );
+
+}
+
+
+function closeMobileMenu() {
+
+    isMobileMenuOpen = false;
+
+    mobileMenu.classList.remove("is-open");
+    mobileMenuToggle.classList.remove("is-open");
+
+    mobileMenuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    mobileMenuToggle.setAttribute(
+        "aria-label",
+        "Open menu"
+    );
+
+    if (mobileResumeTimer !== null) {
+        clearTimeout(mobileResumeTimer);
+    }
+
+    mobileResumeTimer = setTimeout(() => {
+
+        if (!isMobileMenuOpen) {
+            startSlideshow();
+        }
+
+        mobileResumeTimer = null;
+
+    }, MOBILE_MENU_TRANSITION_DURATION);
+
+}
+
+
+mobileMenuToggle.addEventListener("click", () => {
+
+        if (isMobileMenuOpen) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+
+    });
+
+mobileMenuLinks.forEach((link) => {
+
+        link.addEventListener("click", () => {
+
+            closeMobileMenu();
+
+        });
+
+    });
 
 /* =========================
-   LANCEMENT INITIAL
-   ========================= */
+LANCEMENT INITIAL
+========================= */
 
 startSlideshow();
