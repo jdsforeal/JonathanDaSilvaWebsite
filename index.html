@@ -12,15 +12,26 @@
 <body>
 
     <main class="hero">
-        <img
-            src="images/homepage-01.png"
-            alt="Jonathan Da Silva"
-            class="hero-image"
-        >
-        
-        <div class="hero-overlay"></div>
 
-        <header class="site-header">
+        <div class="hero-background" aria-hidden="true">
+
+            <img
+                src="images/homepage-01.png"
+                alt=""
+                class="hero-image hero-image-a is-visible"
+            >
+
+            <img
+                src=""
+                alt=""
+                class="hero-image hero-image-b"
+            >
+
+        </div>
+
+    <div class="hero-overlay"></div>
+
+    <header class="site-header">
 
             <div class="identity">
                 <a href="/" class="name">JONATHAN DA SILVA</a>
@@ -29,11 +40,50 @@
 
             <nav class="main-nav" aria-label="Navigation principale">
 
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link">About</a>
-                <a href="#" class="nav-link">Portfolio</a>
-                <a href="#" class="nav-link">Showreel</a>
-                <a href="#" class="nav-link">Contact</a>
+                <a
+                    href="#"
+                    class="nav-link"
+                    data-preview="images/homepage-10.png"
+                    data-position="center center"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="#"
+                    class="nav-link"
+                    data-preview="images/homepage-11.png"
+                    data-position="center center"
+                >
+                    About
+                </a>
+
+                <a
+                    href="#"
+                    class="nav-link"
+                    data-preview="images/homepage-12.jpg"
+                    data-position="center center"
+                >
+                    Portfolio
+                </a>
+
+                <a
+                    href="#"
+                    class="nav-link"
+                    data-preview="images/homepage-13.png"
+                    data-position="center center"
+                >
+                    Showreel
+                </a>
+
+                <a
+                    href="#"
+                    class="nav-link"
+                    data-preview="images/homepage-14.jpg"
+                    data-position="center center"
+                >
+                    Contact
+                </a>
 
                 <a
                     href="https://www.instagram.com/jdshemera/"
@@ -79,6 +129,8 @@
         </header>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
