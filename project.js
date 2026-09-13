@@ -108,6 +108,49 @@ function getProjectAssetPath(path) {
 }
 
 /* =========================
+   VIMEO
+   ========================= */
+
+function getVimeoEmbedUrl(item) {
+    const videoId = String(item?.id || "").trim();
+
+    if (!videoId) {
+        return "";
+    }
+
+    const params = new URLSearchParams();
+
+    /*
+        Une vidéo Vimeo "Unlisted" peut fournir
+        un hash de confidentialité. Vimeo demande
+        que ce hash soit placé en premier dans l'URL.
+    */
+    const privacyHash = String(item?.hash || "").trim();
+
+    if (privacyHash) {
+        params.set("h", privacyHash);
+    }
+
+    /*
+        Réglages sobres pour le portfolio :
+        - pas de titre / auteur superposés
+        - une seule vidéo joue à la fois
+        - DNT activé côté player
+        - plein écran autorisé
+    */
+    params.set("title", "0");
+    params.set("byline", "0");
+    params.set("autopause", "1");
+    params.set("dnt", "1");
+    params.set("fullscreen", "1");
+
+    return (
+        `https://player.vimeo.com/video/${encodeURIComponent(videoId)}` +
+        `?${params.toString()}`
+    );
+}
+
+/* =========================
    INFORMATIONS DU PROJET
    ========================= */
 
@@ -219,6 +262,39 @@ function createGallerySlide(item, index) {
             video.playsInline = true;
             video.preload = "metadata";
             slide.appendChild(video);
+        }
+    }
+
+    if (item.type === "vimeo") {
+        const embedUrl = getVimeoEmbedUrl(item);
+
+        if (embedUrl) {
+            const frame = document.createElement("div");
+            frame.className = "project-video-frame";
+
+            const iframe = document.createElement("iframe");
+            iframe.className = "project-vimeo-player";
+            iframe.src = embedUrl;
+            iframe.title = `${currentProject.title} — Video`;
+            iframe.loading = index === 0 ? "eager" : "lazy";
+            iframe.allow =
+                "autoplay; fullscreen; picture-in-picture; clipboard-write";
+            iframe.allowFullscreen = true;
+            iframe.referrerPolicy = "strict-origin-when-cross-origin";
+
+            frame.appendChild(iframe);
+            slide.appendChild(frame);
+        } else if (item.poster) {
+            /*
+                Tant que l'ID Vimeo n'est pas renseigné,
+                le projet peut rester parfaitement propre
+                en affichant simplement son poster.
+            */
+            const poster = document.createElement("img");
+            poster.src = getProjectAssetPath(item.poster);
+            poster.alt = `${currentProject.title} — Video`;
+            poster.decoding = "async";
+            slide.appendChild(poster);
         }
     }
 
