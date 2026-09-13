@@ -62,6 +62,14 @@ const mobileMenuLinks = document.querySelectorAll(
     ".mobile-menu-link"
 );
 
+const mobileSubmenuLinks = document.querySelectorAll(
+    ".mobile-submenu-link"
+);
+
+const mobileSubmenuToggles = document.querySelectorAll(
+    ".mobile-submenu-toggle"
+);
+
 
 /* =========================
    ÉTAT DU SLIDESHOW
@@ -352,6 +360,27 @@ function closeMobileMenu() {
     mobileMenu.classList.remove("is-open");
     mobileMenuToggle.classList.remove("is-open");
 
+    document
+    .querySelectorAll(".mobile-nav-group")
+    .forEach((group) => {
+
+        group.classList.remove("is-open");
+
+        const toggle = group.querySelector(
+            ".mobile-submenu-toggle"
+        );
+
+        if (toggle) {
+
+            toggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    });
+
     mobileMenuToggle.setAttribute(
         "aria-expanded",
         "false"
@@ -389,6 +418,53 @@ mobileMenuToggle.addEventListener("click", () => {
 
     });
 
+mobileSubmenuToggles.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        const group = button.closest(".mobile-nav-group");
+
+        const isOpen =
+            group.classList.contains("is-open");
+
+
+        document
+            .querySelectorAll(".mobile-nav-group")
+            .forEach((item) => {
+
+                item.classList.remove("is-open");
+
+                const toggle = item.querySelector(
+                    ".mobile-submenu-toggle"
+                );
+
+                if (toggle) {
+
+                    toggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+
+            });
+
+
+        if (!isOpen) {
+
+            group.classList.add("is-open");
+
+            button.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+        }
+
+    });
+
+});
+
 mobileMenuLinks.forEach((link) => {
 
         link.addEventListener("click", () => {
@@ -398,6 +474,16 @@ mobileMenuLinks.forEach((link) => {
         });
 
     });
+
+mobileSubmenuLinks.forEach((link) => {
+
+    link.addEventListener("click", () => {
+
+        closeMobileMenu();
+
+    });
+
+});
 
 /* =========================
 LANCEMENT INITIAL

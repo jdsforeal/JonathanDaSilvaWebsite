@@ -39,50 +39,114 @@
 
             <nav class="main-nav" aria-label="Main navigation">
 
-                <a
-                    href="#"
-                    class="nav-link"
-                    data-preview="images/homepage-10.png"
-                    data-position="center center"
-                >
-                    Home
-                </a>
+                <div class="nav-item">
 
-                <a
-                    href="#"
-                    class="nav-link"
-                    data-preview="images/homepage-11.png"
-                    data-position="center center"
-                >
-                    About
-                </a>
+                    <a
+                        href="#"
+                        class="nav-link"
+                        data-preview="images/homepage-10.png"
+                        data-position="center center"
+                    >
+                        Home
+                    </a>
 
-                <a
-                    href="#"
-                    class="nav-link"
-                    data-preview="images/homepage-12.jpg"
-                    data-position="center center"
-                >
-                    Portfolio
-                </a>
+                </div>
 
-                <a
-                    href="#"
-                    class="nav-link"
-                    data-preview="images/homepage-13.png"
-                    data-position="center center"
-                >
-                    Showreel
-                </a>
 
-                <a
-                    href="#"
-                    class="nav-link"
-                    data-preview="images/homepage-14.jpg"
-                    data-position="center center"
-                >
-                    Contact
-                </a>
+                <div class="nav-item has-dropdown">
+
+                    <button
+                        class="nav-link nav-dropdown-trigger"
+                        type="button"
+                        data-preview="images/homepage-11.png"
+                        data-position="center center"
+                    >
+                        About
+                    </button>
+
+                    <div class="nav-dropdown">
+
+                        <a href="#" class="dropdown-link">
+                            Profile
+                        </a>
+
+                        <a href="#" class="dropdown-link">
+                            Full Credits
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="nav-item has-dropdown">
+
+                    <a
+                        href="portfolio.html"
+                        class="nav-link"
+                        data-preview="images/homepage-12.jpg"
+                        data-position="center center"
+                    >
+                        Portfolio
+                    </a>
+
+                    <div class="nav-dropdown">
+
+                        <a
+                            href="films.html"
+                            class="dropdown-link"
+                            data-preview="..."
+                        >
+                            Films
+                        </a>
+
+                        <a
+                            href="music-videos.html"
+                            class="dropdown-link"
+                            data-preview="..."
+                        >
+                            Music Videos
+                        </a>
+
+                        <a
+                            href="commercials.html"
+                            class="dropdown-link"
+                            data-preview="..."
+                        >
+                            Commercials
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="nav-item">
+
+                    <a
+                        href="#"
+                        class="nav-link"
+                        data-preview="images/homepage-13.png"
+                        data-position="center center"
+                    >
+                        Showreel
+                    </a>
+
+                </div>
+
+
+                <div class="nav-item">
+
+                    <a
+                        href="#"
+                        class="nav-link"
+                        data-preview="images/homepage-14.jpg"
+                        data-position="center center"
+                    >
+                        Contact
+                    </a>
+
+                </div>
 
                 <a
                     href="https://www.instagram.com/jdshemera/"
@@ -148,13 +212,103 @@
                     Home
                 </a>
 
-                <a href="#" class="mobile-menu-link">
-                    About
-                </a>
 
-                <a href="#" class="mobile-menu-link">
-                    Portfolio
-                </a>
+                <div class="mobile-nav-group">
+
+                    <button
+                        class="mobile-parent-toggle mobile-submenu-toggle"
+                        type="button"
+                        aria-label="Open About submenu"
+                        aria-expanded="false"
+                        aria-controls="mobile-about-submenu"
+                    >
+                        <span>About</span>
+
+                        <span
+                            class="mobile-submenu-icon"
+                            aria-hidden="true"
+                        >
+                            +
+                        </span>
+                    </button>
+
+                    <div
+                        class="mobile-submenu"
+                        id="mobile-about-submenu"
+                    >
+                        <div class="mobile-submenu-inner">
+
+                            <a href="#" class="mobile-submenu-link">
+                                Profile
+                            </a>
+
+                            <a href="#" class="mobile-submenu-link">
+                                Full Credits
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="mobile-nav-group">
+
+                    <div class="mobile-nav-row">
+
+                        <a href="portfolio.html" class="mobile-menu-link">
+                            Portfolio
+                        </a>
+
+                        <button
+                            class="mobile-submenu-toggle"
+                            type="button"
+                            aria-label="Open Portfolio submenu"
+                            aria-expanded="false"
+                            aria-controls="mobile-portfolio-submenu"
+                        >
+                            <span
+                                class="mobile-submenu-icon"
+                                aria-hidden="true"
+                            >
+                                +
+                            </span>
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="mobile-submenu"
+                        id="mobile-portfolio-submenu"
+                    >
+                        <div class="mobile-submenu-inner">
+
+                            <a
+                                href="films.html"
+                                class="mobile-submenu-link"
+                            >
+                                Films
+                            </a>
+
+                            <a
+                                href="music-videos.html"
+                                class="mobile-submenu-link"
+                            >
+                                Music Videos
+                            </a>
+
+                            <a
+                                href="commercials.html"
+                                class="mobile-submenu-link"
+                            >
+                                Commercials
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+
 
                 <a href="#" class="mobile-menu-link">
                     Showreel

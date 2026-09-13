@@ -1,2 +1,2 @@
 # JonathanDaSilvaWebsite
-Personal portfolio website for Jonathan Da Silva — Cinematographer / Camera Operator.
+Personal portfolio website for Jonathan Da Silva — Director Of Photography / Camera Operator.
