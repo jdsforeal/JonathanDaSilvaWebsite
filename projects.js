@@ -186,18 +186,293 @@ const projects = [
 
         category: "films",
 
-        image: "images/pegi13-poster.JPG",
+        image: "images/pegi13-poster.jpg",
 
-        url: "projects/pegi-13.html"
+        url: "projects/pegi-13.html",
+        
+        gallery: [
+
+            {
+                type: "video",
+                src: "videos/pegi-13.mp4",
+                poster: "images/pegi13-poster.JPG"
+            },
+
+            {
+                type: "image",
+                src: "images/pegi13/pegi13_01.jpg",
+                alt: "PEGI-13 — Still 01"
+            },
+
+            {
+                type: "image",
+                src: "images/pegi13/pegi13_02.jpg",
+                alt: "PEGI-13 — Still 02"
+            },
+
+            {
+                type: "image",
+                src: "images/pegi13/pegi13_03.jpg",
+                alt: "PEGI-13 — Still 03"
+            },
+
+            {
+                type: "image",
+                src: "images/pegi13/pegi13_04.jpg",
+                alt: "PEGI-13 — Still 04"
+            },
+
+            {
+                type: "image",
+                src: "images/pegi13/pegi13_05.jpg",
+                alt: "PEGI-13 — Still 05"
+            },
+
+            {
+                type: "image",
+                src: "images/pegi13/pegi13_06.jpg",
+                alt: "PEGI-13 — Still 06"
+            },
+
+        ]
+        ,
+
+        details: [
+
+            {
+                label: "Title",
+                value: "PEGI-13"
+            },
+
+            {
+                label: "Directed by",
+                value: "Matthieu PARISOT & Camran NASSIRI"
+            },
+
+            {
+                label: "Year",
+                value: "2023"
+            },
+
+            {
+                label: "Production",
+                value: "HEMERA"
+            },
+
+            {
+                label: "Camera",
+                value: "RED KOMODO"
+            },
+
+            {
+                label: "Lenses",
+                value: "Zeiss Standard Primes T2.1"
+            },
+
+            {
+                label: "Format",
+                value: "1.50"
+            }
+
+        ],
+
+        crew: [
+
+            {
+                label: "1st AC",
+                value: ""
+            },
+
+            {
+                label: "Gaffer",
+                value: ""
+            },
+
+            {
+                label: "Steadicam Operator",
+                value: ""
+            }
+
+        ]
     },
 
     {
-        director: "Victor RUPRICH-ROBERT",
-        title: "ANTICHAMBRE À LOUER",
-        category: "films",
-        image: "images/homepage-03.jpg",
-        url: "#"
-    },
+    slug: "antichambre-a-louer",
+
+    director: "Victor RUPRICH-ROBERT",
+
+    title: "ANTICHAMBRE À LOUER",
+
+    category: "films",
+
+    image: "images/antichambre_a_louer-poster.jpg",
+
+    url: "projects/antichambre-a-louer.html",
+
+    gallery: [
+
+        {
+            type: "video",
+            src: "videos/aal.mp4",
+            poster: "images/antichambre_a_louer-poster.jpg"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_01.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 01"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_02.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 02"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_03.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 03"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_04.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 04"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_05.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 05"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_06.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 06"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_07.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 07"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_08.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 08"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_09.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 09"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_10.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 10"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_11.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 11"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_12.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 12"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_13.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 13"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_14.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 14"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_15.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 15"
+        },
+
+        {
+            type: "image",
+            src: "images/antichambre_a_louer/antichambre_a_louer_16.jpg",
+            alt: "ANTICHAMBRE À LOUER — Still 16"
+        }
+
+    ],
+
+    details: [
+
+        {
+            label: "Title",
+            value: "ANTICHAMBRE À LOUER"
+        },
+
+        {
+            label: "Directed by",
+            value: "Victor RUPRICH-ROBERT"
+        },
+
+        {
+            label: "Year",
+            value: "2022"
+        },
+
+        {
+            label: "Production",
+            value: "HEMERA"
+        },
+
+        {
+            label: "Camera",
+            value: "RED Epic Dragon 6K"
+        },
+
+        {
+            label: "Lenses",
+            value: "Angenieux S16 Zoom 7-81mm T2.4"
+        },
+
+        {
+            label: "Format",
+            value: "1.85"
+        }
+
+    ],
+
+    crew: [
+
+        {
+            label: "1st AC",
+            value: "Laure DERBÉCOURT"
+        },
+
+        {
+            label: "Gaffer",
+            value: "Simon COLL"
+        },
+
+        {
+            label: "Key Grip",
+            value: "Louis-Gabriel GEAY"
+        }
+
+    ]
+},
 
 
     /* =========================

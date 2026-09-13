@@ -59,9 +59,9 @@ const projectBackLink = document.querySelector(".project-back-link");
 const projectDetailsSection = document.querySelector(".project-details");
 const projectDetailsContent = document.querySelector("[data-project-details]");
 
-const projectNext = document.querySelector(".project-next");
-const nextProjectLink = document.querySelector("[data-next-project-link]");
-const nextProjectTitle = document.querySelector("[data-next-project-title]");
+const projectDetail = document.querySelector(".project-detail");
+const legacyProjectNext = document.querySelector(".project-next");
+let projectNavigation = document.querySelector("[data-project-navigation]");
 
 const gallerySection = document.querySelector("[data-project-gallery-section]");
 const gallerySticky = document.querySelector(".project-gallery-sticky");
@@ -576,42 +576,132 @@ function renderProjectDetails() {
 }
 
 /* =========================
-   NEXT PROJECT
+   NAVIGATION ENTRE PROJETS
    ========================= */
 
-function renderNextProject() {
-    if (
-        !currentProject ||
-        !projectNext ||
-        !nextProjectLink ||
-        !nextProjectTitle
-    ) {
-        return;
+function isProjectNavigable(project) {
+    return Boolean(
+        project?.slug &&
+        project?.url &&
+        project.url !== "#"
+    );
+}
+
+function createProjectNavigationSide(type, project) {
+    const side = document.createElement("div");
+    side.className =
+        `project-navigation-side project-navigation-side--${type}`;
+
+    if (!project) {
+        side.classList.add("is-empty");
+        side.setAttribute("aria-hidden", "true");
+        return side;
     }
 
-    const categoryProjects = projects.filter(
-        (project) => project.category === currentProject.category
-    );
+    const link = document.createElement("a");
+    link.className =
+        `project-navigation-item project-navigation-item--${type}`;
+    link.href = getProjectAssetPath(project.url);
+
+    const label = document.createElement("span");
+    label.className = "project-navigation-label";
+    label.textContent =
+        type === "previous"
+            ? "Previous Project"
+            : "Next Project";
+
+    const main = document.createElement("span");
+    main.className = "project-navigation-main";
+
+    const arrow = document.createElement("span");
+    arrow.className = "project-navigation-arrow";
+    arrow.setAttribute("aria-hidden", "true");
+    arrow.textContent = type === "previous" ? "←" : "→";
+
+    const title = document.createElement("span");
+    title.className = "project-navigation-title";
+    title.textContent = project.title;
+
+    if (type === "previous") {
+        main.append(arrow, title);
+    } else {
+        main.append(title, arrow);
+    }
+
+    link.append(label, main);
+    side.appendChild(link);
+
+    return side;
+}
+
+function renderProjectNavigation() {
+    if (!currentProject) return;
+
+    /*
+        Compatibilité avec les anciennes pages :
+        si elles contiennent encore le bloc .project-next,
+        on le retire automatiquement.
+    */
+    if (legacyProjectNext) {
+        legacyProjectNext.remove();
+    }
+
+    const categoryProjects = projects.filter((project) => {
+        return (
+            project.category === currentProject.category &&
+            isProjectNavigable(project)
+        );
+    });
 
     const currentIndex = categoryProjects.findIndex(
         (project) => project.slug === currentProject.slug
     );
 
-    if (currentIndex < 0) {
-        projectNext.hidden = true;
+    if (currentIndex < 0) return;
+
+    const previousProject =
+        currentIndex > 0
+            ? categoryProjects[currentIndex - 1]
+            : null;
+
+    const nextProject =
+        currentIndex < categoryProjects.length - 1
+            ? categoryProjects[currentIndex + 1]
+            : null;
+
+    if (!previousProject && !nextProject) {
+        if (projectNavigation) {
+            projectNavigation.hidden = true;
+        }
         return;
     }
 
-    const nextProject = categoryProjects[currentIndex + 1];
+    if (!projectNavigation) {
+        projectNavigation = document.createElement("section");
+        projectNavigation.className = "project-navigation";
+        projectNavigation.dataset.projectNavigation = "";
+        projectNavigation.setAttribute(
+            "aria-label",
+            "Project navigation"
+        );
 
-    if (!nextProject || !nextProject.url || nextProject.url === "#") {
-        projectNext.hidden = true;
-        return;
+        if (projectDetailsSection) {
+            projectDetailsSection.insertAdjacentElement(
+                "afterend",
+                projectNavigation
+            );
+        } else if (projectDetail) {
+            projectDetail.appendChild(projectNavigation);
+        }
     }
 
-    nextProjectTitle.textContent = nextProject.title;
-    nextProjectLink.href = `../${nextProject.url}`;
-    projectNext.hidden = false;
+    projectNavigation.hidden = false;
+    projectNavigation.innerHTML = "";
+
+    projectNavigation.append(
+        createProjectNavigationSide("previous", previousProject),
+        createProjectNavigationSide("next", nextProject)
+    );
 }
 
 /* =========================
@@ -681,4 +771,4 @@ renderProjectInfo();
 renderProjectCategoryNavigation();
 renderGallery();
 renderProjectDetails();
-renderNextProject();
+renderProjectNavigation();
