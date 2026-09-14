@@ -1,0 +1,476 @@
+/* =========================
+   PROFILE PAGE
+   ========================= */
+
+.profile-page {
+    background-color: #000;
+    color: #fff;
+}
+
+.profile-page .site-header {
+    position: fixed;
+}
+
+.profile-page .profile-content {
+    width: 100%;
+    min-height: 100svh;
+
+    padding:
+        126px
+        48px
+        72px;
+}
+
+
+/* =========================
+   PROFILE BLOCK
+   ========================= */
+
+.profile-page .profile-block {
+    display: grid;
+
+    grid-template-columns:
+        minmax(340px, 0.92fr)
+        minmax(420px, 1.08fr);
+
+    align-items: start;
+
+    gap:
+        clamp(
+            54px,
+            7vw,
+            118px
+        );
+
+    width: 100%;
+    max-width: 1380px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================
+   IMAGE
+   ========================= */
+
+.profile-page .profile-visual {
+    min-width: 0;
+
+    align-self: center;
+}
+
+.profile-page .profile-image {
+    width: 100%;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    aspect-ratio: 3 / 4;
+
+    background-color: #111;
+}
+
+.profile-page .profile-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center center;
+}
+
+
+/* =========================
+   TEXT COLUMN
+   ========================= */
+
+.profile-page .profile-text {
+    min-width: 0;
+
+    padding-top: 2px;
+}
+
+.profile-page .profile-kicker,
+.profile-page .profile-section-label {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    gap: 14px;
+
+    color: rgba(255, 255, 255, 0.44);
+
+    font-size: 10px;
+    font-weight: 500;
+
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.profile-page .profile-kicker {
+    margin-bottom:
+        clamp(
+            34px,
+            4vw,
+            58px
+        );
+}
+
+.profile-page .profile-kicker-rule,
+.profile-page .profile-section-rule {
+    flex: 1;
+
+    height: 1px;
+
+    background-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+}
+
+
+/* =========================
+   LEAD
+   ========================= */
+
+.profile-page .profile-lead {
+    max-width: 720px;
+
+    margin: 0;
+
+    font-size:
+        clamp(
+            42px,
+            4.5vw,
+            76px
+        );
+
+    font-weight: 700;
+
+    line-height: 0.96;
+    letter-spacing: -0.05em;
+}
+
+
+/* =========================
+   BIOGRAPHY
+   ========================= */
+
+.profile-page .profile-biography {
+    max-width: 690px;
+
+    margin-top:
+        clamp(
+            70px,
+            8vw,
+            118px
+        );
+}
+
+.profile-page .profile-section-label {
+    margin-bottom: 32px;
+}
+
+.profile-page .profile-biography-copy {
+    max-width: 610px;
+}
+
+.profile-page .profile-biography-copy p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size:
+        clamp(
+            14px,
+            1.05vw,
+            17px
+        );
+
+    font-weight: 400;
+
+    line-height: 1.55;
+}
+
+.profile-page .profile-biography-copy p + p {
+    margin-top: 20px;
+}
+
+
+/* =========================
+   LINKS
+   ========================= */
+
+.profile-page .profile-links {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap:
+        12px
+        28px;
+
+    margin-top: 42px;
+}
+
+.profile-page .profile-text-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.16em;
+
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.profile-page .profile-text-link span {
+    transition:
+        transform
+        0.25s
+        ease;
+}
+
+.profile-page .profile-text-link:hover span {
+    transform:
+        translate(
+            3px,
+            -3px
+        );
+}
+
+
+/* =========================
+   META
+   ========================= */
+
+.profile-page .profile-meta {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    width: 100%;
+    max-width: 1380px;
+
+    margin:
+        clamp(
+            88px,
+            10vw,
+            150px
+        )
+        auto
+        0;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+}
+
+.profile-page .profile-meta-item {
+    padding:
+        22px
+        18px
+        0
+        0;
+}
+
+.profile-page .profile-meta-item + .profile-meta-item {
+    padding-left: 18px;
+
+    border-left:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+}
+
+.profile-page .profile-meta-label {
+    margin:
+        0
+        0
+        8px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.42
+        );
+
+    font-size: 9px;
+    font-weight: 500;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+}
+
+.profile-page .profile-meta-value {
+    margin: 0;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   TABLET / FOLDABLE
+   ========================= */
+
+@media
+(min-width: 769px)
+and
+(max-width: 1024px) {
+
+    .profile-page .profile-content {
+        padding:
+            110px
+            24px
+            64px;
+    }
+
+    .profile-page .profile-block {
+        grid-template-columns:
+            minmax(300px, 0.88fr)
+            minmax(340px, 1.12fr);
+
+        gap: 42px;
+    }
+
+    .profile-page .profile-lead {
+        font-size:
+            clamp(
+                38px,
+                5.6vw,
+                58px
+            );
+    }
+
+    .profile-page .profile-biography {
+        margin-top: 62px;
+    }
+
+    .profile-page .profile-meta {
+        margin-top: 92px;
+    }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .profile-page .profile-content {
+        padding:
+            96px
+            12px
+            48px;
+    }
+
+    .profile-page .profile-block {
+        display: flex;
+        flex-direction: column;
+
+        gap: 38px;
+    }
+
+    .profile-page .profile-image {
+        width: min(100%, 520px);
+
+        aspect-ratio: 3 / 4;
+    }
+
+    .profile-page .profile-text {
+        padding-top: 0;
+    }
+
+    .profile-page .profile-kicker {
+        margin-bottom: 26px;
+    }
+
+    .profile-page .profile-lead {
+        font-size:
+            clamp(
+                38px,
+                11vw,
+                56px
+            );
+
+        line-height: 0.98;
+    }
+
+    .profile-page .profile-biography {
+        margin-top: 52px;
+    }
+
+    .profile-page .profile-section-label {
+        margin-bottom: 24px;
+    }
+
+    .profile-page .profile-biography-copy p {
+        font-size: 14px;
+        line-height: 1.52;
+    }
+
+    .profile-page .profile-links {
+        margin-top: 36px;
+    }
+
+    .profile-page .profile-meta {
+        grid-template-columns: 1fr;
+
+        margin-top: 76px;
+    }
+
+    .profile-page .profile-meta-item {
+        padding:
+            16px
+            0
+            18px;
+    }
+
+    .profile-page .profile-meta-item + .profile-meta-item {
+        padding-left: 0;
+
+        border-left: 0;
+
+        border-top:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.14
+            );
+    }
+}

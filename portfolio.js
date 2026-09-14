@@ -2,212 +2,113 @@
    PORTFOLIO - AFFICHAGE DES PROJETS
    ========================= */
 
-
-/* =========================
-   TROUVER LES 3 GRILLES
-   ========================= */
-
 const projectGrids = {
-
-    films: document.querySelector(
-        "#films .projects-grid"
-    ),
-
-    "music-videos": document.querySelector(
-        "#music-videos .projects-grid"
-    ),
-
-    commercials: document.querySelector(
-        "#commercials .projects-grid"
-    )
-
+    films: document.querySelector("#films .projects-grid"),
+    "music-videos": document.querySelector("#music-videos .projects-grid"),
+    commercials: document.querySelector("#commercials .projects-grid")
 };
 
+function getProjectCardSecondaryInfo(project) {
+    if (!project) return "";
 
-/* =========================
-   CRÉER UNE VIGNETTE
-   ========================= */
+    if (project.category === "films") {
+        return project.director
+            ? `Directed by ${project.director}`
+            : "";
+    }
+
+    if (project.category === "music-videos") {
+        return project.artist || "";
+    }
+
+    if (project.category === "commercials") {
+        return project.client || "";
+    }
+
+    return (
+        project.artist ||
+        project.client ||
+        (project.director ? `Directed by ${project.director}` : "")
+    );
+}
 
 function createProjectCard(project) {
-
     const card = document.createElement("a");
-
     card.className = "project-card";
     card.href = project.url;
 
+    const imageWrapper = document.createElement("div");
+    imageWrapper.className = "project-image-wrapper";
 
-    const imageWrapper =
-        document.createElement("div");
-
-    imageWrapper.className =
-        "project-image-wrapper";
-
-
-    const image =
-        document.createElement("img");
-
+    const image = document.createElement("img");
     image.className = "project-image";
-
     image.src = project.image;
     image.alt = project.title;
-
     image.loading = "lazy";
     image.decoding = "async";
 
-
-    const title =
-        document.createElement("h3");
-
+    const title = document.createElement("h3");
     title.className = "project-title";
 
+    const mainTitle = document.createElement("span");
+    mainTitle.className = "project-main-title";
+    mainTitle.textContent = project.title;
 
-    /* =========================
-    ARTISTE OU CLIENT
-    ========================= */
+    const secondaryInfo =
+        getProjectCardSecondaryInfo(project);
 
-    /* =========================
-   INFORMATION SECONDAIRE
-   ========================= */
+    const secondary = document.createElement("span");
+    secondary.className = "project-secondary";
+    secondary.textContent = secondaryInfo;
 
-let secondaryInfo = "";
+    /*
+        AFFICHAGE DES VIGNETTES
 
+        FILMS
+        → TITRE
+        → Directed by...
 
-if (project.director) {
+        MUSIC VIDEOS
+        → TITRE
+        → ARTISTE
 
-    secondaryInfo =
-        `Directed by ${project.director}`;
+        COMMERCIALS
+        → TITRE
+        → MARQUE / CLIENT
+    */
 
-} else if (project.artist) {
-
-    secondaryInfo =
-        project.artist;
-
-} else if (project.client) {
-
-    secondaryInfo =
-        project.client;
-
-}
-
-
-/* =========================
-   TITRE PRINCIPAL
-   ========================= */
-
-const mainTitle =
-    document.createElement("span");
-
-mainTitle.className =
-    "project-main-title";
-
-mainTitle.textContent =
-    project.title;
-
-
-/* =========================
-   INFORMATION SECONDAIRE
-   ========================= */
-
-const secondary =
-    document.createElement("span");
-
-secondary.className =
-    "project-secondary";
-
-secondary.textContent =
-    secondaryInfo;
-
-
-/* =========================
-   ORDRE D'AFFICHAGE
-   ========================= */
-
-if (project.artist) {
-
-    title.appendChild(
-        secondary
-    );
-
-    title.appendChild(
-        mainTitle
-    );
-
-} else {
-
-    title.appendChild(
-        mainTitle
-    );
+    title.appendChild(mainTitle);
 
     if (secondaryInfo) {
-
-        title.appendChild(
-            secondary
-        );
-
+        title.appendChild(secondary);
     }
 
-}
-
-
     imageWrapper.appendChild(image);
-
     card.appendChild(imageWrapper);
     card.appendChild(title);
 
-
     return card;
-
 }
 
-
-/* =========================
-   AFFICHER TOUS LES PROJETS
-   ========================= */
-
 function renderProjects() {
-
-
-    /* Vider les anciennes fausses vignettes */
-
-    Object
-        .values(projectGrids)
-        .forEach((grid) => {
-
-            if (grid) {
-                grid.innerHTML = "";
-            }
-
-        });
-
-
-    /* Ajouter les vrais projets */
+    Object.values(projectGrids).forEach((grid) => {
+        if (grid) {
+            grid.innerHTML = "";
+        }
+    });
 
     projects.forEach((project) => {
-
         const targetGrid =
             projectGrids[project.category];
-
 
         if (!targetGrid) {
             return;
         }
 
-
-        const projectCard =
-            createProjectCard(project);
-
-
         targetGrid.appendChild(
-            projectCard
+            createProjectCard(project)
         );
-
     });
-
 }
-
-
-/* =========================
-   LANCEMENT
-   ========================= */
 
 renderProjects();

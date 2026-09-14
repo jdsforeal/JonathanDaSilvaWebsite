@@ -1,0 +1,195 @@
+/* =========================
+   SHOWREEL PAGE
+   ========================= */
+
+.showreel-page {
+    background-color: #000;
+    color: #fff;
+}
+
+.showreel-page .site-header {
+    position: fixed;
+}
+
+.showreel-page .showreel-content {
+    width: 100%;
+    min-height: 100svh;
+
+    padding:
+        128px
+        48px
+        64px;
+}
+
+
+/* =========================
+   SECTION
+   ========================= */
+
+.showreel-page .showreel-section {
+    width: 100%;
+    max-width: 1480px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================
+   HEADING
+   ========================= */
+
+.showreel-page .showreel-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 24px;
+
+    color: rgba(255, 255, 255, 0.46);
+
+    font-size: 10px;
+    font-weight: 500;
+
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.showreel-page .showreel-heading-rule {
+    flex: 1;
+
+    height: 1px;
+
+    background-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+}
+
+
+/* =========================
+   VIDEO
+   ========================= */
+
+.showreel-page .showreel-frame {
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    background-color: #111;
+}
+
+.showreel-page .showreel-frame iframe {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    border: 0;
+}
+
+
+/* =========================
+   META
+   ========================= */
+
+.showreel-page .showreel-meta {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        auto;
+
+    gap: 24px;
+
+    padding-top: 14px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    margin-top: 14px;
+}
+
+.showreel-page .showreel-meta p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.46);
+
+    font-size: 9px;
+    font-weight: 500;
+
+    line-height: 1.3;
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   TABLET / FOLDABLE
+   ========================= */
+
+@media
+(min-width: 769px)
+and
+(max-width: 1024px) {
+
+    .showreel-page .showreel-content {
+        padding:
+            110px
+            24px
+            56px;
+    }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .showreel-page .showreel-content {
+        padding:
+            96px
+            12px
+            44px;
+    }
+
+    .showreel-page .showreel-heading {
+        margin-bottom: 16px;
+    }
+
+    .showreel-page .showreel-meta {
+        grid-template-columns:
+            1fr
+            auto;
+
+        gap:
+            8px
+            20px;
+    }
+
+    .showreel-page .showreel-meta p:nth-child(2) {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .showreel-page .showreel-meta p:nth-child(3) {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: right;
+    }
+}

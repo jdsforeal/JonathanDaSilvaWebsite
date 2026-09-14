@@ -154,26 +154,96 @@ function getVimeoEmbedUrl(item) {
    INFORMATIONS DU PROJET
    ========================= */
 
+function getPrimaryInfo(project) {
+    if (!project) return "";
+
+    /*
+        MUSIC VIDEOS
+        Le titre et l'artiste sont affichés
+        au même niveau, séparés par "/".
+
+        Exemple :
+        FIRE CRACKER / ÉMILIE FRANCO
+    */
+    if (
+        project.category === "music-videos" &&
+        project.artist
+    ) {
+        return `${project.title} / ${project.artist}`;
+    }
+
+    /*
+        COMMERCIALS
+        Le titre et le client sont affichés
+        au même niveau, séparés par "/".
+
+        Exemple :
+        "LATE CHECKOUT" / BELLEROSE
+    */
+    if (
+        project.category === "commercials" &&
+        project.client
+    ) {
+        return `${project.title} / ${project.client}`;
+    }
+
+    /*
+        FILMS / autres catégories
+        gardent leur titre habituel.
+    */
+    return project.title || "";
+}
+
 function getSecondaryInfo(project) {
     if (!project) return "";
-    if (project.director) return `Directed by ${project.director}`;
-    if (project.artist) return project.artist;
+
+    /*
+        Le réalisateur garde exactement
+        le même traitement que sur les films.
+    */
+    if (project.director) {
+        return `Directed by ${project.director}`;
+    }
+
+    /*
+        Sur un Music Video, l'artiste est déjà
+        affiché dans le titre principal.
+        On évite donc de le répéter ici.
+    */
+    if (
+        project.category === "music-videos" ||
+        project.category === "commercials"
+    ) {
+        return "";
+    }
+
+    /*
+        Compatibilité avec les autres catégories.
+    */
     if (project.client) return project.client;
+    if (project.artist) return project.artist;
+
     return "";
 }
 
 function renderProjectInfo() {
     if (!currentProject) return;
 
+    const primaryInfo =
+        getPrimaryInfo(currentProject);
+
     if (projectTitle) {
-        projectTitle.textContent = currentProject.title;
+        projectTitle.textContent =
+            primaryInfo;
     }
 
     if (projectSecondary) {
-        projectSecondary.textContent = getSecondaryInfo(currentProject);
+        projectSecondary.textContent =
+            getSecondaryInfo(currentProject);
     }
 
-    document.title = `${currentProject.title} — Jonathan Da Silva`;
+    document.title =
+        `${primaryInfo} — Jonathan Da Silva`;
 }
 
 /* =========================

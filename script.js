@@ -4,21 +4,89 @@
 
 const slides = [
     {
-        src: "images/homepage-01.png",
+        src: "images/homepage-slides/homepage-01.png",
         position: "center center"
     },
     {
-        src: "images/homepage-02.jpg",
+        src: "images/homepage-slides/homepage-02.png",
         position: "center center"
     },
     {
-        src: "images/homepage-03.jpg",
+        src: "images/homepage-slides/homepage-03.png",
         position: "center center"
     },
     {
-        src: "images/homepage-04.jpg",
+        src: "images/homepage-slides/homepage-04.png",
         position: "center center"
-    }
+    },
+    {
+        src: "images/homepage-slides/homepage-05.jpg",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-06.jpg",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-07.jpg",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-08.jpg",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-09.jpg",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-10.jpg",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-11.png",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-12.jpg",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-13.png",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-14.png",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-15.jpg",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-16.jpg",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-17.png",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-18.jpg",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-19.png",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-20.png",
+        position: "center center"
+    },
+    {
+        src: "images/homepage-slides/homepage-21.png",
+        position: "center center"
+    },
 ];
 
 
@@ -486,7 +554,69 @@ mobileSubmenuLinks.forEach((link) => {
 });
 
 /* =========================
-LANCEMENT INITIAL
-========================= */
+   INITIALISATION DU SLIDESHOW
+   ========================= */
 
-startSlideshow();
+function initializeSlideshow() {
+
+    if (
+        slides.length === 0 ||
+        !imageA ||
+        !imageB
+    ) {
+        return;
+    }
+
+    const firstSlide =
+        slides[0];
+
+    currentSlide = 0;
+
+    imageA.src =
+        firstSlide.src;
+
+    imageA.style.objectPosition =
+        firstSlide.position ||
+        "center center";
+
+    imageA.classList.add(
+        "is-visible"
+    );
+
+    imageB.classList.remove(
+        "is-visible"
+    );
+
+    visibleImage =
+        imageA;
+
+    hiddenImage =
+        imageB;
+
+
+    /*
+        Précharger les autres slides
+        pour rendre les fondus plus fluides.
+    */
+
+    slides
+        .slice(1)
+        .forEach((slide) => {
+
+            const image =
+                new Image();
+
+            image.src =
+                slide.src;
+        });
+
+
+    startSlideshow();
+}
+
+
+/* =========================
+   LANCEMENT INITIAL
+   ========================= */
+
+initializeSlideshow();

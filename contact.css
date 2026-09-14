@@ -1,0 +1,392 @@
+/* =========================
+   CONTACT PAGE
+   ========================= */
+
+.contact-page {
+    background-color: #000;
+    color: #fff;
+}
+
+.contact-page .site-header {
+    position: fixed;
+}
+
+.contact-page .contact-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100%;
+    min-height: 100svh;
+
+    padding:
+        130px
+        48px
+        54px;
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
+.contact-page .contact-hero {
+    width: 100%;
+    max-width: 1480px;
+
+    margin: 0 auto;
+}
+
+.contact-page .contact-kicker {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom:
+        clamp(
+            34px,
+            5vw,
+            68px
+        );
+
+    color: rgba(255, 255, 255, 0.44);
+
+    font-size: 10px;
+    font-weight: 500;
+
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.contact-page .contact-kicker-rule {
+    flex: 1;
+
+    height: 1px;
+
+    background-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+}
+
+.contact-page .contact-title {
+    margin: 0;
+
+    font-size:
+        clamp(
+            86px,
+            12vw,
+            196px
+        );
+
+    font-weight: 800;
+
+    line-height: 0.78;
+    letter-spacing: -0.075em;
+
+    text-transform: uppercase;
+}
+
+.contact-page .contact-intro {
+    width:
+        min(
+            100%,
+            660px
+        );
+
+    margin:
+        clamp(
+            42px,
+            5vw,
+            72px
+        )
+        0
+        0;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.68
+        );
+
+    font-size:
+        clamp(
+            17px,
+            1.6vw,
+            24px
+        );
+
+    line-height: 1.25;
+}
+
+
+/* =========================
+   CONTACT GRID
+   ========================= */
+
+.contact-page .contact-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+
+    width: 100%;
+    max-width: 1480px;
+
+    margin:
+        clamp(
+            72px,
+            9vw,
+            150px
+        )
+        auto
+        0;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+}
+
+.contact-page .contact-item {
+    min-width: 0;
+
+    padding:
+        18px
+        18px
+        0
+        0;
+}
+
+.contact-page .contact-item + .contact-item {
+    padding-left: 18px;
+
+    border-left:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.14
+        );
+}
+
+.contact-page .contact-label {
+    margin:
+        0
+        0
+        10px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.38
+        );
+
+    font-size: 9px;
+    font-weight: 500;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+}
+
+.contact-page .contact-value {
+    margin: 0;
+
+    color: #fff;
+
+    font-size:
+        clamp(
+            11px,
+            0.95vw,
+            14px
+        );
+
+    font-weight: 600;
+
+    line-height: 1.45;
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+}
+
+.contact-page .contact-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    text-decoration: none;
+}
+
+.contact-page .contact-link span {
+    transition:
+        transform
+        0.25s
+        ease;
+}
+
+.contact-page .contact-link:hover span {
+    transform:
+        translate(
+            3px,
+            -3px
+        );
+}
+
+.contact-page .contact-email-placeholder {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.32
+        );
+}
+
+
+/* =========================
+   TABLET / FOLDABLE
+   ========================= */
+
+@media
+(min-width: 769px)
+and
+(max-width: 1024px) {
+
+    .contact-page .contact-content {
+        padding:
+            112px
+            24px
+            48px;
+    }
+
+    .contact-page .contact-title {
+        font-size:
+            clamp(
+                80px,
+                13vw,
+                132px
+            );
+    }
+
+    .contact-page .contact-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        row-gap: 28px;
+    }
+
+    .contact-page .contact-item:nth-child(3) {
+        padding-left: 0;
+
+        border-left: 0;
+    }
+
+    .contact-page .contact-item:nth-child(n + 3) {
+        padding-top: 18px;
+
+        border-top:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.14
+            );
+    }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .contact-page .contact-content {
+        min-height: 100svh;
+
+        padding:
+            96px
+            12px
+            40px;
+    }
+
+    .contact-page .contact-kicker {
+        margin-bottom: 28px;
+    }
+
+    .contact-page .contact-title {
+        font-size:
+            clamp(
+                62px,
+                20vw,
+                96px
+            );
+
+        line-height: 0.8;
+    }
+
+    .contact-page .contact-intro {
+        margin-top: 36px;
+
+        font-size:
+            clamp(
+                17px,
+                5.4vw,
+                22px
+            );
+    }
+
+    .contact-page .contact-grid {
+        grid-template-columns: 1fr;
+
+        margin-top: 70px;
+    }
+
+    .contact-page .contact-item {
+        padding:
+            16px
+            0
+            18px;
+    }
+
+    .contact-page .contact-item + .contact-item {
+        padding-left: 0;
+
+        border-left: 0;
+
+        border-top:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.14
+            );
+    }
+
+    .contact-page .contact-value {
+        font-size: 12px;
+    }
+}

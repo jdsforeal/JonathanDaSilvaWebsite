@@ -2,37 +2,47 @@
    PAGE CATÉGORIE
    ========================= */
 
-
-/* =========================
-   RÉCUPÉRER LA CATÉGORIE
-   ========================= */
-
 const categoryPage =
     document.body.dataset.category;
-
-
-/* =========================
-   TROUVER LA GRILLE
-   ========================= */
 
 const categoryGrid =
     document.querySelector(
         ".category-projects-grid"
     );
 
+function getCategoryCardSecondaryInfo(project) {
+    if (!project) return "";
 
-/* =========================
-   CRÉER UNE VIGNETTE
-   ========================= */
+    if (project.category === "films") {
+        return project.director
+            ? `Directed by ${project.director}`
+            : "";
+    }
+
+    if (project.category === "music-videos") {
+        return project.artist || "";
+    }
+
+    if (project.category === "commercials") {
+        return project.client || "";
+    }
+
+    return (
+        project.artist ||
+        project.client ||
+        (project.director ? `Directed by ${project.director}` : "")
+    );
+}
 
 function createCategoryProjectCard(project) {
-
     const card =
         document.createElement("a");
 
-    card.className = "project-card";
-    card.href = project.url;
+    card.className =
+        "project-card";
 
+    card.href =
+        project.url;
 
     const imageWrapper =
         document.createElement("div");
@@ -40,63 +50,29 @@ function createCategoryProjectCard(project) {
     imageWrapper.className =
         "project-image-wrapper";
 
-
     const image =
         document.createElement("img");
 
-    image.className = "project-image";
+    image.className =
+        "project-image";
 
-    image.src = project.image;
-    image.alt = project.title;
+    image.src =
+        project.image;
 
-    image.loading = "lazy";
-    image.decoding = "async";
+    image.alt =
+        project.title;
 
+    image.loading =
+        "lazy";
+
+    image.decoding =
+        "async";
 
     const title =
         document.createElement("h2");
 
-    title.className = "project-title";
-
-
-    /* =========================
-       INFORMATION SECONDAIRE
-       ========================= */
-
-    let secondaryInfo = "";
-
-
-    if (project.director) {
-
-        secondaryInfo =
-            `Directed by ${project.director}`;
-
-    } else if (project.artist) {
-
-        secondaryInfo =
-            project.artist;
-
-    } else if (project.client) {
-
-        secondaryInfo =
-            project.client;
-
-    }
-
-
-    const secondary =
-        document.createElement("span");
-
-    secondary.className =
-        "project-secondary";
-
-    secondary.textContent =
-        secondaryInfo;
-
-
-    /* =========================
-       TITRE PRINCIPAL
-       ========================= */
+    title.className =
+        "project-title";
 
     const mainTitle =
         document.createElement("span");
@@ -107,85 +83,86 @@ function createCategoryProjectCard(project) {
     mainTitle.textContent =
         project.title;
 
+    const secondaryInfo =
+        getCategoryCardSecondaryInfo(
+            project
+        );
 
-    /* =========================
-       ORDRE D'AFFICHAGE
-       ========================= */
+    const secondary =
+        document.createElement("span");
 
-    if (project.artist) {
+    secondary.className =
+        "project-secondary";
 
-        if (secondaryInfo) {
-            title.appendChild(secondary);
-        }
+    secondary.textContent =
+        secondaryInfo;
 
-        title.appendChild(mainTitle);
+    /*
+        AFFICHAGE DES VIGNETTES
 
-    } else {
+        FILMS
+        → TITRE
+        → Directed by...
 
-        title.appendChild(mainTitle);
+        MUSIC VIDEOS
+        → TITRE
+        → ARTISTE
 
-        if (secondaryInfo) {
-            title.appendChild(secondary);
-        }
+        COMMERCIALS
+        → TITRE
+        → MARQUE / CLIENT
+    */
 
+    title.appendChild(
+        mainTitle
+    );
+
+    if (secondaryInfo) {
+        title.appendChild(
+            secondary
+        );
     }
 
+    imageWrapper.appendChild(
+        image
+    );
 
-    /* =========================
-       ASSEMBLER LA CARTE
-       ========================= */
+    card.appendChild(
+        imageWrapper
+    );
 
-    imageWrapper.appendChild(image);
-
-    card.appendChild(imageWrapper);
-    card.appendChild(title);
-
+    card.appendChild(
+        title
+    );
 
     return card;
-
 }
 
-
-/* =========================
-   AFFICHER LA CATÉGORIE
-   ========================= */
-
 function renderCategoryProjects() {
-
-    if (!categoryPage || !categoryGrid) {
+    if (
+        !categoryPage ||
+        !categoryGrid
+    ) {
         return;
     }
 
+    categoryGrid.innerHTML = "";
 
     const filteredProjects =
         projects.filter((project) => {
-
             return (
                 project.category ===
                 categoryPage
             );
-
         });
 
-
     filteredProjects.forEach((project) => {
-
-        const projectCard =
+        categoryGrid.appendChild(
             createCategoryProjectCard(
                 project
-            );
-
-        categoryGrid.appendChild(
-            projectCard
+            )
         );
-
     });
-
 }
-
-
-/* =========================
-   LANCEMENT
-   ========================= */
 
 renderCategoryProjects();

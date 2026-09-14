@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Showreel — Jonathan Da Silva, Director of Photography."
+    >
+
+    <title>
+        Showreel — Jonathan Da Silva
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="showreel.css"
+    >
+
+</head>
+
+
+<body class="showreel-page">
+
+
+    <!-- =========================
+         HEADER
+         ========================= -->
+
+    <header class="site-header portfolio-header">
+
+
+        <!-- IDENTITÉ -->
+
+        <div class="identity">
+
+            <a
+                href="index.html"
+                class="name"
+            >
+                JONATHAN DA SILVA
+            </a>
+
+            <p class="role">
+                DIRECTOR OF PHOTOGRAPHY
+            </p>
+
+        </div>
+
+
+        <!-- NAVIGATION DESKTOP -->
+
+        <nav
+            class="main-nav"
+            aria-label="Main navigation"
+        >
+
+
+            <!-- HOME -->
+
+            <div class="nav-item">
+
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+            </div>
+
+
+            <!-- ABOUT -->
+
+            <div class="nav-item has-dropdown">
+
+                <button
+                    class="nav-link nav-dropdown-trigger"
+                    type="button"
+                >
+                    About
+                </button>
+
+
+                <div class="nav-dropdown">
+
+                    <a
+                        href="profile.html"
+                        class="dropdown-link"
+                    >
+                        Profile
+                    </a>
+
+                    <a
+                        href="full-credits.html"
+                        class="dropdown-link"
+                    >
+                        Full Credits
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PORTFOLIO -->
+
+            <div class="nav-item has-dropdown">
+
+                <a
+                    href="portfolio.html"
+                    class="nav-link"
+                >
+                    Portfolio
+                </a>
+
+
+                <div class="nav-dropdown">
+
+                    <a
+                        href="films.html"
+                        class="dropdown-link"
+                    >
+                        Films
+                    </a>
+
+                    <a
+                        href="music-videos.html"
+                        class="dropdown-link"
+                    >
+                        Music Videos
+                    </a>
+
+                    <a
+                        href="commercials.html"
+                        class="dropdown-link"
+                    >
+                        Commercials
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- SHOWREEL -->
+
+            <div class="nav-item">
+
+                <a
+                    href="showreel.html"
+                    class="nav-link is-active"
+                    aria-current="page"
+                >
+                    Showreel
+                </a>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="nav-item">
+
+                <a
+                    href="contact.html"
+                    class="nav-link"
+                >
+                    Contact
+                </a>
+
+            </div>
+
+
+            <!-- INSTAGRAM -->
+
+            <a
+                href="https://www.instagram.com/jdshemera/"
+                class="instagram-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <rect
+                        x="3"
+                        y="3"
+                        width="18"
+                        height="18"
+                        rx="5"
+                        ry="5"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    />
+
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    />
+
+                    <circle
+                        cx="17.3"
+                        cy="6.7"
+                        r="1.2"
+                        fill="currentColor"
+                    />
+
+                </svg>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- BOUTON HAMBURGER -->
+
+        <button
+            class="mobile-menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+
+    </header>
+
+
+    <!-- =========================
+         MENU MOBILE
+         ========================= -->
+
+    <div
+        class="mobile-menu"
+        id="mobile-menu"
+    >
+
+
+        <nav
+            class="mobile-menu-nav"
+            aria-label="Mobile navigation"
+        >
+
+
+            <!-- HOME -->
+
+            <a
+                href="index.html"
+                class="mobile-menu-link"
+            >
+                Home
+            </a>
+
+
+            <!-- ABOUT -->
+
+            <div class="mobile-nav-group">
+
+                <button
+                    class="mobile-parent-toggle mobile-submenu-toggle"
+                    type="button"
+                    aria-label="Open About submenu"
+                    aria-expanded="false"
+                    aria-controls="mobile-about-submenu"
+                >
+
+                    <span>
+                        About
+                    </span>
+
+                    <span
+                        class="mobile-submenu-icon"
+                        aria-hidden="true"
+                    >
+                        +
+                    </span>
+
+                </button>
+
+
+                <div
+                    class="mobile-submenu"
+                    id="mobile-about-submenu"
+                >
+
+                    <div class="mobile-submenu-inner">
+
+                        <a
+                            href="profile.html"
+                            class="mobile-submenu-link"
+                        >
+                            Profile
+                        </a>
+
+                        <a
+                            href="full-credits.html"
+                            class="mobile-submenu-link"
+                        >
+                            Full Credits
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PORTFOLIO -->
+
+            <div class="mobile-nav-group">
+
+                <div class="mobile-nav-row">
+
+                    <a
+                        href="portfolio.html"
+                        class="mobile-menu-link"
+                    >
+                        Portfolio
+                    </a>
+
+                    <button
+                        class="mobile-submenu-toggle"
+                        type="button"
+                        aria-label="Open Portfolio submenu"
+                        aria-expanded="false"
+                        aria-controls="mobile-portfolio-submenu"
+                    >
+
+                        <span
+                            class="mobile-submenu-icon"
+                            aria-hidden="true"
+                        >
+                            +
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="mobile-submenu"
+                    id="mobile-portfolio-submenu"
+                >
+
+                    <div class="mobile-submenu-inner">
+
+                        <a
+                            href="films.html"
+                            class="mobile-submenu-link"
+                        >
+                            Films
+                        </a>
+
+                        <a
+                            href="music-videos.html"
+                            class="mobile-submenu-link"
+                        >
+                            Music Videos
+                        </a>
+
+                        <a
+                            href="commercials.html"
+                            class="mobile-submenu-link"
+                        >
+                            Commercials
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SHOWREEL -->
+
+            <a
+                href="showreel.html"
+                class="mobile-menu-link is-active"
+                aria-current="page"
+            >
+                Showreel
+            </a>
+
+
+            <!-- CONTACT -->
+
+            <a
+                href="contact.html"
+                class="mobile-menu-link"
+            >
+                Contact
+            </a>
+
+
+        </nav>
+
+
+        <!-- INSTAGRAM MOBILE -->
+
+        <a
+            href="https://www.instagram.com/jdshemera/"
+            class="mobile-instagram-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+        >
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+
+                <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="5"
+                    ry="5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                />
+
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                />
+
+                <circle
+                    cx="17.3"
+                    cy="6.7"
+                    r="1.2"
+                    fill="currentColor"
+                />
+
+            </svg>
+
+        </a>
+
+
+    </div>
+
+
+    <!-- =========================
+         SHOWREEL
+         ========================= -->
+
+    <main class="showreel-content">
+
+
+        <section class="showreel-section">
+
+
+            <div class="showreel-heading">
+
+                <span>
+                    Showreel
+                </span>
+
+                <span
+                    class="showreel-heading-rule"
+                    aria-hidden="true"
+                ></span>
+
+            </div>
+
+
+            <div class="showreel-frame">
+
+                <iframe
+                    src="https://player.vimeo.com/video/203030539?title=0&byline=0&autopause=1&dnt=1&fullscreen=1"
+                    title="Jonathan Da Silva — Showreel"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+
+            </div>
+
+
+            <div class="showreel-meta">
+
+                <p>
+                    Jonathan Da Silva
+                </p>
+
+                <p>
+                    Director of Photography
+                </p>
+
+                <p>
+                    2026
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+         ========================= -->
+
+    <script src="navigation.js"></script>
+
+
+</body>
+
+</html>
