@@ -60,7 +60,7 @@ const projects = [
         director: "Matthieu PARISOT & Camran NASSIRI",
         title: "PEGI-13",
         category: "films",
-        image: "images/pegi13-poster.JPG",
+        image: "images/pegi13-poster.jpg",
         url: "projects/pegi-13.html",
 
         gallery: [
@@ -68,7 +68,7 @@ const projects = [
                 type: "vimeo",
                 id: "1226866622",
                 hash: "c4f3ec043e",
-                poster: "images/pegi13-poster.JPG"
+                poster: "images/pegi13-poster.jpg"
             },
             { type: "image", src: "images/pegi13/pegi13_01.jpg", alt: "PEGI-13 — Still 01" },
             { type: "image", src: "images/pegi13/pegi13_02.jpg", alt: "PEGI-13 — Still 02" },
