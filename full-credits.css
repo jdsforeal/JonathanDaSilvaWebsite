@@ -538,3 +538,24 @@ and
         font-size: 8px;
     }
 }
+
+
+/* =========================
+   MOBILE TITLE FIT PATCH
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .credits-page .credits-title {
+        max-width: 100%;
+
+        font-size:
+            clamp(
+                54px,
+                19vw,
+                78px
+            );
+
+        overflow-wrap: normal;
+    }
+}

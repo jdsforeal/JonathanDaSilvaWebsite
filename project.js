@@ -5,6 +5,14 @@
 const GALLERY_SCROLL_SPEED = 1;
 const GALLERY_HOLD_RATIO = 0.35;
 
+const COMPACT_GALLERY_MEDIA = window.matchMedia(
+    "(max-width: 768px), (max-height: 560px) and (orientation: landscape) and (pointer: coarse)"
+);
+
+function isCompactGalleryMode() {
+    return COMPACT_GALLERY_MEDIA.matches;
+}
+
 const CATEGORY_META = {
     films: {
         label: "Films",
@@ -85,6 +93,8 @@ const lightboxItems =
 
 let lightboxIndex = 0;
 let galleryScrollFrame = null;
+let lightboxTouchStartX = null;
+let lightboxTouchStartY = null;
 
 /* =========================
    CHEMINS DES MÉDIAS
@@ -470,7 +480,34 @@ function createGallerySlide(item, index) {
             iframe.allowFullscreen = true;
             iframe.referrerPolicy = "strict-origin-when-cross-origin";
 
-            frame.appendChild(iframe);
+            const fullscreenButton = document.createElement("button");
+            fullscreenButton.className = "project-video-fullscreen";
+            fullscreenButton.type = "button";
+            fullscreenButton.setAttribute("aria-label", "Open video fullscreen");
+            fullscreenButton.textContent = "FULLSCREEN ↗";
+
+            fullscreenButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const fullscreenTarget = frame;
+
+                if (fullscreenTarget.requestFullscreen) {
+                    fullscreenTarget.requestFullscreen();
+                    return;
+                }
+
+                if (fullscreenTarget.webkitRequestFullscreen) {
+                    fullscreenTarget.webkitRequestFullscreen();
+                    return;
+                }
+
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                }
+            });
+
+            frame.append(iframe, fullscreenButton);
             slide.appendChild(frame);
         } else if (item.poster) {
             /*
@@ -565,6 +602,13 @@ function updateGalleryLayout() {
         return;
     }
 
+    if (isCompactGalleryMode()) {
+        gallerySection.style.removeProperty("--project-gallery-height");
+        galleryTrack.style.transform = "none";
+        updateCompactGalleryIndicator();
+        return;
+    }
+
     const maximumTranslation = getMaximumTranslation();
 
     if (maximumTranslation <= 0) {
@@ -610,6 +654,46 @@ function getGalleryProgress() {
     return Math.min(1, Math.max(0, progress));
 }
 
+function updateCompactGalleryIndicator() {
+    if (!galleryViewport || !galleryTrack) return;
+
+    const slides = galleryTrack.querySelectorAll(".project-gallery-slide");
+    if (slides.length === 0) return;
+
+    const viewportCenter =
+        galleryViewport.scrollLeft + galleryViewport.clientWidth / 2;
+
+    let activeIndex = 0;
+    let smallestDistance = Infinity;
+
+    slides.forEach((slide, index) => {
+        const slideCenter =
+            slide.offsetLeft + slide.offsetWidth / 2;
+
+        const distance = Math.abs(slideCenter - viewportCenter);
+
+        if (distance < smallestDistance) {
+            smallestDistance = distance;
+            activeIndex = index;
+        }
+    });
+
+    const maxScroll =
+        Math.max(1, galleryViewport.scrollWidth - galleryViewport.clientWidth);
+
+    const progress =
+        Math.min(1, Math.max(0, galleryViewport.scrollLeft / maxScroll));
+
+    if (galleryProgress) {
+        galleryProgress.style.transform = `scaleX(${progress})`;
+    }
+
+    if (galleryCurrent) {
+        galleryCurrent.textContent =
+            String(activeIndex + 1).padStart(2, "0");
+    }
+}
+
 function getActiveSlideIndex(horizontalTranslation) {
     if (!galleryTrack || !galleryViewport) return 0;
 
@@ -639,6 +723,12 @@ function getActiveSlideIndex(horizontalTranslation) {
 
 function updateGalleryFromScroll() {
     if (!galleryTrack || !gallerySection || gallerySection.hidden) return;
+
+    if (isCompactGalleryMode()) {
+        galleryTrack.style.transform = "none";
+        updateCompactGalleryIndicator();
+        return;
+    }
 
     const progress = getGalleryProgress();
     const maximumTranslation = getMaximumTranslation();
@@ -683,6 +773,22 @@ function syncMainGalleryToLightbox() {
     );
 
     if (!slide) return;
+
+    if (isCompactGalleryMode()) {
+        const desiredScrollLeft = Math.max(
+            0,
+            slide.offsetLeft -
+            (galleryViewport.clientWidth - slide.offsetWidth) / 2
+        );
+
+        galleryViewport.scrollTo({
+            left: desiredScrollLeft,
+            behavior: "auto"
+        });
+
+        updateCompactGalleryIndicator();
+        return;
+    }
 
     const maximumTranslation = getMaximumTranslation();
     const viewportCenter = galleryViewport.clientWidth / 2;
@@ -1021,6 +1127,43 @@ if (lightboxMedia) {
             closeLightbox();
         }
     });
+
+    lightboxMedia.addEventListener("touchstart", (event) => {
+        const touch = event.changedTouches?.[0];
+        if (!touch) return;
+
+        lightboxTouchStartX = touch.clientX;
+        lightboxTouchStartY = touch.clientY;
+    }, {
+        passive: true
+    });
+
+    lightboxMedia.addEventListener("touchend", (event) => {
+        if (lightboxTouchStartX === null || lightboxTouchStartY === null) {
+            return;
+        }
+
+        const touch = event.changedTouches?.[0];
+        if (!touch) return;
+
+        const deltaX = touch.clientX - lightboxTouchStartX;
+        const deltaY = touch.clientY - lightboxTouchStartY;
+
+        lightboxTouchStartX = null;
+        lightboxTouchStartY = null;
+
+        if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY)) {
+            return;
+        }
+
+        if (deltaX > 0) {
+            showPreviousLightboxImage();
+        } else {
+            showNextLightboxImage();
+        }
+    }, {
+        passive: true
+    });
 }
 
 document.addEventListener("keydown", (event) => {
@@ -1048,15 +1191,42 @@ window.addEventListener("scroll", scheduleGalleryUpdate, {
     passive: true
 });
 
-window.addEventListener("resize", () => {
+if (galleryViewport) {
+    galleryViewport.addEventListener("scroll", () => {
+        if (!isCompactGalleryMode()) return;
+
+        if (galleryScrollFrame !== null) return;
+
+        galleryScrollFrame = requestAnimationFrame(() => {
+            updateCompactGalleryIndicator();
+            galleryScrollFrame = null;
+        });
+    }, {
+        passive: true
+    });
+}
+
+function refreshGalleryAfterViewportChange() {
     updateGalleryLayout();
     updateGalleryFromScroll();
+
+    if (lightbox?.classList.contains("is-open")) {
+        updateLightbox();
+    }
+}
+
+window.addEventListener("resize", refreshGalleryAfterViewportChange);
+
+window.addEventListener("orientationchange", () => {
+    window.setTimeout(refreshGalleryAfterViewportChange, 250);
 });
 
-window.addEventListener("load", () => {
-    updateGalleryLayout();
-    updateGalleryFromScroll();
-});
+COMPACT_GALLERY_MEDIA.addEventListener?.(
+    "change",
+    refreshGalleryAfterViewportChange
+);
+
+window.addEventListener("load", refreshGalleryAfterViewportChange);
 
 /* =========================
    LANCEMENT

@@ -390,3 +390,24 @@ and
         font-size: 12px;
     }
 }
+
+
+/* =========================
+   MOBILE TITLE FIT PATCH
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .contact-page .contact-title {
+        max-width: 100%;
+
+        font-size:
+            clamp(
+                44px,
+                15vw,
+                66px
+            );
+
+        line-height: 0.82;
+    }
+}
