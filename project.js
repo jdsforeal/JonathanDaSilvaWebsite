@@ -197,6 +197,60 @@ function applyProjectResponsiveImage(
    VIMEO
    ========================= */
 
+/*
+    Vimeo fournit sa propre API pour demander le plein écran.
+    C'est plus fiable sur mobile (notamment Safari/iPhone)
+    que requestFullscreen() appliqué directement à notre <div>.
+*/
+const vimeoPlayerApiReady = new Promise((resolve, reject) => {
+    if (window.Vimeo && window.Vimeo.Player) {
+        resolve(window.Vimeo);
+        return;
+    }
+
+    const existingScript = document.querySelector(
+        'script[src="https://player.vimeo.com/api/player.js"]'
+    );
+
+    if (existingScript) {
+        existingScript.addEventListener("load", () => {
+            if (window.Vimeo && window.Vimeo.Player) {
+                resolve(window.Vimeo);
+            } else {
+                reject(new Error("Vimeo Player API unavailable."));
+            }
+        }, { once: true });
+
+        existingScript.addEventListener(
+            "error",
+            () => reject(new Error("Unable to load Vimeo Player API.")),
+            { once: true }
+        );
+
+        return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://player.vimeo.com/api/player.js";
+    script.async = true;
+
+    script.addEventListener("load", () => {
+        if (window.Vimeo && window.Vimeo.Player) {
+            resolve(window.Vimeo);
+        } else {
+            reject(new Error("Vimeo Player API unavailable."));
+        }
+    }, { once: true });
+
+    script.addEventListener(
+        "error",
+        () => reject(new Error("Unable to load Vimeo Player API.")),
+        { once: true }
+    );
+
+    document.head.appendChild(script);
+});
+
 function getVimeoEmbedUrl(item) {
     const videoId = String(item?.id || "").trim();
 
@@ -486,25 +540,53 @@ function createGallerySlide(item, index) {
             fullscreenButton.setAttribute("aria-label", "Open video fullscreen");
             fullscreenButton.textContent = "FULLSCREEN ↗";
 
+            let vimeoPlayer = null;
+
+            /*
+                On ne montre le bouton personnalisé qu'une fois
+                l'API Vimeo réellement disponible.
+            */
+            fullscreenButton.hidden = true;
+
+            vimeoPlayerApiReady
+                .then((Vimeo) => {
+                    vimeoPlayer = new Vimeo.Player(iframe);
+                    fullscreenButton.hidden = false;
+                })
+                .catch(() => {
+                    /*
+                        Si l'API Vimeo ne charge pas, le player Vimeo
+                        conserve malgré tout son propre bouton fullscreen.
+                    */
+                    fullscreenButton.remove();
+                });
+
             fullscreenButton.addEventListener("click", (event) => {
                 event.preventDefault();
                 event.stopPropagation();
 
-                const fullscreenTarget = frame;
-
-                if (fullscreenTarget.requestFullscreen) {
-                    fullscreenTarget.requestFullscreen();
+                if (!vimeoPlayer) {
                     return;
                 }
 
-                if (fullscreenTarget.webkitRequestFullscreen) {
-                    fullscreenTarget.webkitRequestFullscreen();
-                    return;
-                }
+                vimeoPlayer
+                    .requestFullscreen()
+                    .catch(() => {
+                        /*
+                            Fallback desktop / navigateurs compatibles.
+                            Sur iPhone, Vimeo gère normalement lui-même
+                            l'entrée en plein écran via son API.
+                        */
+                        if (iframe.requestFullscreen) {
+                            return iframe.requestFullscreen();
+                        }
 
-                if (iframe.requestFullscreen) {
-                    iframe.requestFullscreen();
-                }
+                        if (iframe.webkitRequestFullscreen) {
+                            return iframe.webkitRequestFullscreen();
+                        }
+
+                        return undefined;
+                    });
             });
 
             frame.append(iframe, fullscreenButton);
