@@ -12,8 +12,18 @@
 
     <meta
         name="description"
-        content="Jonathan Da Silva is a Belgian cinematographer and Director of Photography based in Brussels, working across fiction, music videos and commercials."
+        content="Jonathan Da Silva is a Belgian cinematographer and Director of Photography based between Brussels and Paris, working across films, music videos and commercials."
     >
+
+    <!-- SEO / SOCIAL -->
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jonathan Da Silva">
+    <meta property="og:title" content="Profile — Jonathan Da Silva">
+    <meta property="og:description" content="Jonathan Da Silva is a Belgian cinematographer and Director of Photography based between Brussels and Paris, working across films, music videos and commercials.">
+    <meta name="twitter:card" content="summary">
+
 
     <title>
         Profile — Jonathan Da Silva
@@ -497,7 +507,17 @@
 
                     <img
                         src="images/profile/profile.jpg"
+                        srcset="
+                            images-small/profile/profile.jpg 675w,
+                            images/profile/profile.jpg 1350w
+                        "
+                        sizes="
+                            (max-width: 768px) 100vw,
+                            42vw
+                        "
                         alt="Jonathan Da Silva — Director of Photography"
+                        decoding="async"
+                        fetchpriority="high"
                     >
 
                 </figure>

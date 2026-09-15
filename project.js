@@ -107,6 +107,82 @@ function getProjectAssetPath(path) {
     return `../${path}`;
 }
 
+
+function getProjectResponsiveImageInfo(path) {
+
+    const info =
+        typeof getResponsiveImageInfo === "function"
+            ? getResponsiveImageInfo(path)
+            : {
+                master: path,
+                small: path,
+                masterWidth: 0,
+                smallWidth: 0
+            };
+
+    return {
+        master:
+            getProjectAssetPath(
+                info.master || path
+            ),
+
+        small:
+            getProjectAssetPath(
+                info.small || info.master || path
+            ),
+
+        masterWidth:
+            Number(info.masterWidth || 0),
+
+        smallWidth:
+            Number(info.smallWidth || 0)
+    };
+
+}
+
+
+function applyProjectResponsiveImage(
+    imageElement,
+    logicalPath,
+    sizes = "1280px"
+) {
+
+    if (!imageElement) {
+        return;
+    }
+
+    const info =
+        getProjectResponsiveImageInfo(
+            logicalPath
+        );
+
+    imageElement.sizes =
+        sizes;
+
+    if (
+        info.small &&
+        info.master &&
+        info.smallWidth > 0 &&
+        info.masterWidth > info.smallWidth
+    ) {
+
+        imageElement.srcset =
+            `${info.small} ${info.smallWidth}w, ` +
+            `${info.master} ${info.masterWidth}w`;
+
+    } else {
+
+        imageElement.removeAttribute(
+            "srcset"
+        );
+
+    }
+
+    imageElement.src =
+        info.master;
+
+}
+
 /* =========================
    VIMEO
    ========================= */
@@ -283,10 +359,31 @@ function createGallerySlide(item, index) {
 
     if (item.type === "image") {
         const image = document.createElement("img");
-        image.src = getProjectAssetPath(item.src);
-        image.alt = item.alt || currentProject.title;
-        image.loading = index === 0 ? "eager" : "lazy";
-        image.decoding = "async";
+
+        image.alt =
+            item.alt || currentProject.title;
+
+        image.loading =
+            index === 0
+                ? "eager"
+                : "lazy";
+
+        image.decoding =
+            "async";
+
+        if (
+            index === 0 &&
+            "fetchPriority" in image
+        ) {
+            image.fetchPriority =
+                "high";
+        }
+
+        applyProjectResponsiveImage(
+            image,
+            item.src,
+            "(max-width: 768px) 92vw, (max-width: 1024px) 88vw, 1280px"
+        );
 
         const imageLightboxIndex = lightboxItems.indexOf(item);
 
@@ -314,9 +411,24 @@ function createGallerySlide(item, index) {
     if (item.type === "video") {
         if (!item.src && item.poster) {
             const poster = document.createElement("img");
-            poster.src = getProjectAssetPath(item.poster);
-            poster.alt = `${currentProject.title} — Video`;
-            poster.decoding = "async";
+
+            poster.alt =
+                `${currentProject.title} — Video`;
+
+            poster.loading =
+                index === 0
+                    ? "eager"
+                    : "lazy";
+
+            poster.decoding =
+                "async";
+
+            applyProjectResponsiveImage(
+                poster,
+                item.poster,
+                "(max-width: 768px) 92vw, (max-width: 1024px) 88vw, 1280px"
+            );
+
             slide.appendChild(poster);
         }
 
@@ -325,7 +437,13 @@ function createGallerySlide(item, index) {
             video.src = getProjectAssetPath(item.src);
 
             if (item.poster) {
-                video.poster = getProjectAssetPath(item.poster);
+                const posterInfo =
+                    getProjectResponsiveImageInfo(
+                        item.poster
+                    );
+
+                video.poster =
+                    posterInfo.master;
             }
 
             video.controls = true;
@@ -361,9 +479,24 @@ function createGallerySlide(item, index) {
                 en affichant simplement son poster.
             */
             const poster = document.createElement("img");
-            poster.src = getProjectAssetPath(item.poster);
-            poster.alt = `${currentProject.title} — Video`;
-            poster.decoding = "async";
+
+            poster.alt =
+                `${currentProject.title} — Video`;
+
+            poster.loading =
+                index === 0
+                    ? "eager"
+                    : "lazy";
+
+            poster.decoding =
+                "async";
+
+            applyProjectResponsiveImage(
+                poster,
+                item.poster,
+                "(max-width: 768px) 92vw, (max-width: 1024px) 88vw, 1280px"
+            );
+
             slide.appendChild(poster);
         }
     }
@@ -597,8 +730,24 @@ function updateLightbox() {
 
     const item = lightboxItems[lightboxIndex];
 
-    lightboxImage.src = getProjectAssetPath(item.src);
-    lightboxImage.alt = item.alt || currentProject.title;
+    const responsiveItem =
+        getProjectResponsiveImageInfo(
+            item.src
+        );
+
+    lightboxImage.removeAttribute(
+        "srcset"
+    );
+
+    lightboxImage.removeAttribute(
+        "sizes"
+    );
+
+    lightboxImage.src =
+        responsiveItem.master;
+
+    lightboxImage.alt =
+        item.alt || currentProject.title;
 
     if (lightboxCurrent) {
         lightboxCurrent.textContent =

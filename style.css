@@ -24,6 +24,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
+body.mobile-menu-open {
+    overflow: hidden;
+}
+
 /* =========================
    HOMEPAGE
    ========================= */
@@ -633,10 +638,13 @@ MENU MOBILE OUVERT
 ========================= */
 
     .mobile-menu {
-        position: absolute;
+        position: fixed;
         inset: 0;
 
         z-index: 20;
+
+        width: 100%;
+        height: 100svh;
 
         display: flex;
         flex-direction: column;
@@ -1973,9 +1981,12 @@ body.lightbox-open {
     }
 
     .mobile-menu {
-        position: absolute;
+        position: fixed;
         inset: 0;
         z-index: 20;
+
+        width: 100%;
+        height: 100svh;
 
         display: flex;
         flex-direction: column;
@@ -2333,3 +2344,30 @@ body.lightbox-open {
     }
 }
 
+
+
+/* =========================
+   ACCESSIBILITÉ / POLISH
+   ========================= */
+
+a:focus-visible,
+button:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

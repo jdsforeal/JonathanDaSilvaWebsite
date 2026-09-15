@@ -2,30 +2,67 @@
    NAVIGATION MOBILE
    ========================= */
 
-const mobileMenuToggle = document.querySelector(
-    ".mobile-menu-toggle"
-);
+const mobileMenuToggle =
+    document.querySelector(
+        ".mobile-menu-toggle"
+    );
 
-const mobileMenu = document.querySelector(
-    ".mobile-menu"
-);
+const mobileMenu =
+    document.querySelector(
+        ".mobile-menu"
+    );
 
-const mobileMenuLinks = document.querySelectorAll(
-    ".mobile-menu-link"
-);
+const mobileMenuLinks =
+    document.querySelectorAll(
+        ".mobile-menu-link"
+    );
 
-const mobileSubmenuLinks = document.querySelectorAll(
-    ".mobile-submenu-link"
-);
+const mobileSubmenuLinks =
+    document.querySelectorAll(
+        ".mobile-submenu-link"
+    );
 
-const mobileSubmenuToggles = document.querySelectorAll(
-    ".mobile-submenu-toggle"
-);
-
-const MOBILE_MENU_TRANSITION_DURATION = 500;
+const mobileSubmenuToggles =
+    document.querySelectorAll(
+        ".mobile-submenu-toggle"
+    );
 
 let isMobileMenuOpen = false;
-let mobileResumeTimer = null;
+
+
+/* =========================
+   UTILITAIRES MENU MOBILE
+   ========================= */
+
+function resetMobileSubmenus() {
+
+    document
+        .querySelectorAll(
+            ".mobile-nav-group"
+        )
+        .forEach((group) => {
+
+            group.classList.remove(
+                "is-open"
+            );
+
+            const toggle =
+                group.querySelector(
+                    ".mobile-submenu-toggle"
+                );
+
+            if (toggle) {
+
+                toggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
+        });
+
+}
 
 
 /* =========================
@@ -34,15 +71,26 @@ let mobileResumeTimer = null;
 
 function openMobileMenu() {
 
-    isMobileMenuOpen = true;
-
-    if (mobileResumeTimer !== null) {
-        clearTimeout(mobileResumeTimer);
-        mobileResumeTimer = null;
+    if (
+        !mobileMenu ||
+        !mobileMenuToggle
+    ) {
+        return;
     }
 
-    mobileMenu.classList.add("is-open");
-    mobileMenuToggle.classList.add("is-open");
+    isMobileMenuOpen = true;
+
+    mobileMenu.classList.add(
+        "is-open"
+    );
+
+    mobileMenuToggle.classList.add(
+        "is-open"
+    );
+
+    document.body.classList.add(
+        "mobile-menu-open"
+    );
 
     mobileMenuToggle.setAttribute(
         "aria-expanded",
@@ -63,33 +111,28 @@ function openMobileMenu() {
 
 function closeMobileMenu() {
 
+    if (
+        !mobileMenu ||
+        !mobileMenuToggle
+    ) {
+        return;
+    }
+
     isMobileMenuOpen = false;
 
-    mobileMenu.classList.remove("is-open");
-    mobileMenuToggle.classList.remove("is-open");
+    mobileMenu.classList.remove(
+        "is-open"
+    );
 
+    mobileMenuToggle.classList.remove(
+        "is-open"
+    );
 
-    document
-        .querySelectorAll(".mobile-nav-group")
-        .forEach((group) => {
+    document.body.classList.remove(
+        "mobile-menu-open"
+    );
 
-            group.classList.remove("is-open");
-
-            const toggle = group.querySelector(
-                ".mobile-submenu-toggle"
-            );
-
-            if (toggle) {
-
-                toggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            }
-
-        });
-
+    resetMobileSubmenus();
 
     mobileMenuToggle.setAttribute(
         "aria-expanded",
@@ -108,107 +151,407 @@ function closeMobileMenu() {
    BOUTON HAMBURGER
    ========================= */
 
-mobileMenuToggle.addEventListener("click", () => {
+if (
+    mobileMenuToggle &&
+    mobileMenu
+) {
 
-    if (isMobileMenuOpen) {
-        closeMobileMenu();
-    } else {
-        openMobileMenu();
-    }
+    mobileMenuToggle.addEventListener(
+        "click",
+        () => {
 
-});
+            if (isMobileMenuOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+
+        }
+    );
+
+}
 
 
 /* =========================
    SOUS-MENUS MOBILE
    ========================= */
 
-mobileSubmenuToggles.forEach((button) => {
+mobileSubmenuToggles.forEach(
+    (button) => {
 
-    button.addEventListener("click", () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-        const group =
-            button.closest(".mobile-nav-group");
+                const group =
+                    button.closest(
+                        ".mobile-nav-group"
+                    );
 
-        const isOpen =
-            group.classList.contains("is-open");
+                if (!group) {
+                    return;
+                }
 
+                const isOpen =
+                    group.classList.contains(
+                        "is-open"
+                    );
 
-        document
-            .querySelectorAll(".mobile-nav-group")
-            .forEach((item) => {
+                resetMobileSubmenus();
 
-                item.classList.remove("is-open");
+                if (!isOpen) {
 
-                const toggle = item.querySelector(
-                    ".mobile-submenu-toggle"
-                );
+                    group.classList.add(
+                        "is-open"
+                    );
 
-                if (toggle) {
-
-                    toggle.setAttribute(
+                    button.setAttribute(
                         "aria-expanded",
-                        "false"
+                        "true"
                     );
 
                 }
 
-            });
+            }
+        );
 
-
-        if (!isOpen) {
-
-            group.classList.add("is-open");
-
-            button.setAttribute(
-                "aria-expanded",
-                "true"
-            );
-
-        }
-
-    });
-
-});
+    }
+);
 
 
 /* =========================
    LIENS MOBILE
    ========================= */
 
-mobileMenuLinks.forEach((link) => {
+mobileMenuLinks.forEach(
+    (link) => {
 
-    link.addEventListener("click", () => {
+        link.addEventListener(
+            "click",
+            closeMobileMenu
+        );
 
-        closeMobileMenu();
+    }
+);
 
-    });
+mobileSubmenuLinks.forEach(
+    (link) => {
 
-});
+        link.addEventListener(
+            "click",
+            closeMobileMenu
+        );
+
+    }
+);
 
 
-mobileSubmenuLinks.forEach((link) => {
+/* =========================
+   ÉCHAP POUR FERMER
+   ========================= */
 
-    link.addEventListener("click", () => {
+document.addEventListener(
+    "keydown",
+    (event) => {
 
-        closeMobileMenu();
+        if (
+            event.key === "Escape" &&
+            isMobileMenuOpen
+        ) {
 
-    });
+            closeMobileMenu();
 
-});
+            mobileMenuToggle?.focus();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   RETOUR DESKTOP
+   ========================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (
+            window.innerWidth > 1024 &&
+            isMobileMenuOpen
+        ) {
+
+            closeMobileMenu();
+
+        }
+
+    }
+);
+
+
+
+/* =========================
+   PRÉCHARGEMENT DES PAGES
+   ========================= */
+
+/*
+    Objectif :
+    rendre les clics entre les pages plus immédiats
+    sans précharger les grosses images du portfolio.
+
+    - Au survol / focus d'un lien local :
+      le HTML cible est préchargé immédiatement.
+    - Après quelques secondes d'inactivité :
+      quelques pages locales sont préchargées doucement.
+    - Désactivé si l'utilisateur a activé
+      l'économie de données ou utilise une connexion 2G.
+*/
+
+const prefetchedPages =
+    new Set();
+
+function shouldPrefetchPages() {
+
+    const connection =
+        navigator.connection ||
+        navigator.mozConnection ||
+        navigator.webkitConnection;
+
+    if (connection?.saveData) {
+        return false;
+    }
+
+    const effectiveType =
+        connection?.effectiveType || "";
+
+    if (
+        effectiveType === "slow-2g" ||
+        effectiveType === "2g"
+    ) {
+        return false;
+    }
+
+    return true;
+}
+
+
+function getLocalHtmlUrl(link) {
+
+    const href =
+        link?.getAttribute("href");
+
+    if (
+        !href ||
+        href.startsWith("#") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        link.target === "_blank"
+    ) {
+        return null;
+    }
+
+    try {
+
+        const url =
+            new URL(
+                href,
+                window.location.href
+            );
+
+        if (
+            url.origin !==
+            window.location.origin
+        ) {
+            return null;
+        }
+
+        const pathname =
+            url.pathname.toLowerCase();
+
+        const isHtmlPage =
+            pathname.endsWith(".html") ||
+            pathname.endsWith("/");
+
+        if (!isHtmlPage) {
+            return null;
+        }
+
+        url.hash = "";
+
+        return url.href;
+
+    } catch {
+
+        return null;
+
+    }
+
+}
+
+
+function prefetchPage(url) {
+
+    if (
+        !url ||
+        !shouldPrefetchPages() ||
+        prefetchedPages.has(url)
+    ) {
+        return;
+    }
+
+    prefetchedPages.add(url);
+
+    const link =
+        document.createElement("link");
+
+    link.rel =
+        "prefetch";
+
+    link.href =
+        url;
+
+    document.head.appendChild(
+        link
+    );
+
+}
+
+
+function installLinkPrefetch() {
+
+    if (!shouldPrefetchPages()) {
+        return;
+    }
+
+    document.addEventListener(
+        "pointerover",
+        (event) => {
+
+            const link =
+                event.target.closest("a[href]");
+
+            const url =
+                getLocalHtmlUrl(link);
+
+            if (url) {
+                prefetchPage(url);
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+    document.addEventListener(
+        "focusin",
+        (event) => {
+
+            const link =
+                event.target.closest("a[href]");
+
+            const url =
+                getLocalHtmlUrl(link);
+
+            if (url) {
+                prefetchPage(url);
+            }
+
+        }
+    );
+
+    document.addEventListener(
+        "touchstart",
+        (event) => {
+
+            const link =
+                event.target.closest("a[href]");
+
+            const url =
+                getLocalHtmlUrl(link);
+
+            if (url) {
+                prefetchPage(url);
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+    const idlePrefetch = () => {
+
+        const urls =
+            [
+                ...new Set(
+                    Array
+                        .from(
+                            document.querySelectorAll(
+                                "a[href]"
+                            )
+                        )
+                        .map(getLocalHtmlUrl)
+                        .filter(Boolean)
+                )
+            ]
+            .slice(0, 8);
+
+        urls.forEach(
+            (url, index) => {
+
+                setTimeout(
+                    () => {
+                        prefetchPage(url);
+                    },
+                    index * 250
+                );
+
+            }
+        );
+
+    };
+
+    if (
+        "requestIdleCallback" in window
+    ) {
+
+        window.requestIdleCallback(
+            idlePrefetch,
+            {
+                timeout: 3500
+            }
+        );
+
+    } else {
+
+        setTimeout(
+            idlePrefetch,
+            2500
+        );
+
+    }
+
+}
+
+installLinkPrefetch();
+
 
 /* =========================
    PORTFOLIO - NAVIGATION ACTIVE
    SCROLL + SOURIS
    ========================= */
 
-const portfolioSections = document.querySelectorAll(
-    ".portfolio-section"
-);
+const portfolioSections =
+    document.querySelectorAll(
+        ".portfolio-section"
+    );
 
-const portfolioCategoryLinks = document.querySelectorAll(
-    ".portfolio-category-link"
-);
+const portfolioCategoryLinks =
+    document.querySelectorAll(
+        ".portfolio-category-link"
+    );
 
 
 /* =========================
@@ -223,22 +566,29 @@ let hoveredSection = null;
    AFFICHER LA CATÉGORIE ACTIVE
    ========================= */
 
-function setActivePortfolioCategory(sectionId) {
+function setActivePortfolioCategory(
+    sectionId
+) {
 
-    portfolioCategoryLinks.forEach((link) => {
+    portfolioCategoryLinks.forEach(
+        (link) => {
 
-        const target =
-            link.getAttribute("href");
+            const target =
+                link.getAttribute(
+                    "href"
+                );
 
-        const isActive =
-            target === `#${sectionId}`;
+            const isActive =
+                target ===
+                `#${sectionId}`;
 
-        link.classList.toggle(
-            "is-active",
-            isActive
-        );
+            link.classList.toggle(
+                "is-active",
+                isActive
+            );
 
-    });
+        }
+    );
 
 }
 
@@ -256,19 +606,25 @@ function updateActivePortfolioCategory() {
         return;
     }
 
-
     const pageBottom =
         window.scrollY +
         window.innerHeight;
 
     const documentHeight =
-        document.documentElement.scrollHeight;
+        document
+            .documentElement
+            .scrollHeight;
 
+    /*
+        Si on arrive tout en bas
+        de la page, la dernière
+        catégorie devient active.
+    */
 
-    /* Si on arrive tout en bas de la page,
-       la dernière catégorie devient active */
-
-    if (pageBottom >= documentHeight - 2) {
+    if (
+        pageBottom >=
+        documentHeight - 2
+    ) {
 
         scrollActiveSection =
             portfolioSections[
@@ -281,26 +637,31 @@ function updateActivePortfolioCategory() {
             window.scrollY +
             window.innerHeight * 0.35;
 
-
         scrollActiveSection =
             portfolioSections[0].id;
 
+        portfolioSections.forEach(
+            (section) => {
 
-        portfolioSections.forEach((section) => {
+                if (
+                    section.offsetTop <=
+                    readingPoint
+                ) {
 
-            if (section.offsetTop <= readingPoint) {
+                    scrollActiveSection =
+                        section.id;
 
-                scrollActiveSection =
-                    section.id;
+                }
 
             }
-
-        });
+        );
 
     }
 
-
-    /* La souris a priorité sur le scroll */
+    /*
+        La souris a priorité
+        sur le scroll.
+    */
 
     if (hoveredSection === null) {
 
@@ -317,44 +678,45 @@ function updateActivePortfolioCategory() {
    SOURIS SUR UNE CATÉGORIE
    ========================= */
 
-const canHoverPortfolio = window.matchMedia(
-    "(hover: hover) and (pointer: fine)"
-).matches;
-
+const canHoverPortfolio =
+    window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+    ).matches;
 
 if (canHoverPortfolio) {
 
-    portfolioSections.forEach((section) => {
+    portfolioSections.forEach(
+        (section) => {
 
-        section.addEventListener(
-            "mouseenter",
-            () => {
+            section.addEventListener(
+                "mouseenter",
+                () => {
 
-                hoveredSection =
-                    section.id;
+                    hoveredSection =
+                        section.id;
 
-                setActivePortfolioCategory(
-                    hoveredSection
-                );
+                    setActivePortfolioCategory(
+                        hoveredSection
+                    );
 
-            }
-        );
+                }
+            );
 
+            section.addEventListener(
+                "mouseleave",
+                () => {
 
-        section.addEventListener(
-            "mouseleave",
-            () => {
+                    hoveredSection = null;
 
-                hoveredSection = null;
+                    setActivePortfolioCategory(
+                        scrollActiveSection
+                    );
 
-                setActivePortfolioCategory(
-                    scrollActiveSection
-                );
+                }
+            );
 
-            }
-        );
-
-    });
+        }
+    );
 
 }
 
@@ -365,7 +727,10 @@ if (canHoverPortfolio) {
 
 window.addEventListener(
     "scroll",
-    updateActivePortfolioCategory
+    updateActivePortfolioCategory,
+    {
+        passive: true
+    }
 );
 
 

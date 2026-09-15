@@ -42,10 +42,15 @@ function createProjectCard(project) {
 
     const image = document.createElement("img");
     image.className = "project-image";
-    image.src = project.image;
     image.alt = project.title;
     image.loading = "lazy";
     image.decoding = "async";
+
+    applyResponsiveImage(
+        image,
+        project.image,
+        "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+    );
 
     const title = document.createElement("h3");
     title.className = "project-title";

@@ -56,9 +56,6 @@ function createCategoryProjectCard(project) {
     image.className =
         "project-image";
 
-    image.src =
-        project.image;
-
     image.alt =
         project.title;
 
@@ -67,6 +64,12 @@ function createCategoryProjectCard(project) {
 
     image.decoding =
         "async";
+
+    applyResponsiveImage(
+        image,
+        project.image,
+        "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+    );
 
     const title =
         document.createElement("h2");
