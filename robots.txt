@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /JonathanDaSilvaWebsite/projects/_project-template.html
+
+Sitemap: https://jdsforeal.github.io/JonathanDaSilvaWebsite/sitemap.xml
