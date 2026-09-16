@@ -2707,3 +2707,77 @@ html {
 */
 
 /* === JDS TARGETED MOBILE ICON FIX END === */
+
+/* === JDS FULLSCREEN CORNERS ICON START === */
+
+/*
+   Clear fullscreen icon:
+   two opposite "expand" corners instead of a diagonal arrow.
+   More recognisable on mobile and fully CSS-based.
+*/
+
+.project-video-fullscreen {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-right: 12px;
+}
+
+/* top-right corner */
+.project-video-fullscreen::before {
+    content: "";
+    position: relative;
+
+    width: 7px;
+    height: 7px;
+
+    right: auto;
+    top: auto;
+
+    flex: 0 0 7px;
+
+    background: none;
+
+    border-top: 1.5px solid currentColor;
+    border-right: 1.5px solid currentColor;
+
+    transform: translate(2px, -2px);
+}
+
+/* bottom-left corner */
+.project-video-fullscreen::after {
+    content: "";
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    right: 11px;
+    bottom: 10px;
+
+    flex: none;
+
+    background: none;
+
+    border: 0;
+    border-left: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .project-video-fullscreen {
+        gap: 7px;
+        padding-right: 12px;
+    }
+
+    .project-video-fullscreen::before,
+    .project-video-fullscreen::after {
+        width: 7px;
+        height: 7px;
+    }
+}
+
+/* === JDS FULLSCREEN CORNERS ICON END === */
