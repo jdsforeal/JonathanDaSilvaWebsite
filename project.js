@@ -16,15 +16,15 @@ function isCompactGalleryMode() {
 const CATEGORY_META = {
     films: {
         label: "Films",
-        page: "../films.html"
+        page: "films.html"
     },
     "music-videos": {
         label: "Music Videos",
-        page: "../music-videos.html"
+        page: "music-videos.html"
     },
     commercials: {
         label: "Commercials",
-        page: "../commercials.html"
+        page: "commercials.html"
     }
 };
 
@@ -114,7 +114,20 @@ function getProjectAssetPath(path) {
         return path;
     }
 
-    return `../${path}`;
+    const marker = "/projects/";
+    const pathname = window.location.pathname;
+    const markerIndex = pathname.lastIndexOf(marker);
+
+    if (markerIndex === -1) {
+        return path;
+    }
+
+    const afterProjects = pathname.slice(markerIndex + marker.length);
+    const folderDepth = Math.max(0, afterProjects.split("/").length - 1);
+    const rootPrefix = "../".repeat(folderDepth + 1);
+    const cleanPath = path.replace(/^\.\/+/, "").replace(/^(\.\.\/)+/, "");
+
+    return `${rootPrefix}${cleanPath}`;
 }
 
 
@@ -397,7 +410,7 @@ function renderProjectCategoryNavigation() {
     if (!categoryMeta) return;
 
     if (projectBackLink) {
-        projectBackLink.href = categoryMeta.page;
+        projectBackLink.href = getProjectAssetPath(categoryMeta.page);
         projectBackLink.textContent = `← Back to ${categoryMeta.label}`;
     }
 

@@ -2600,3 +2600,157 @@ button:focus-visible {
         bottom: max(6px, env(safe-area-inset-bottom));
     }
 }
+
+/* === JDS MOBILE DARK-MODE + ARROWS FIX START === */
+
+/*
+   1) Explicitly declare the site as a dark interface.
+   This prevents mobile browsers from trying to reinterpret
+   the navigation colors when the phone/browser is in dark mode.
+*/
+html {
+    color-scheme: dark;
+    background-color: #000;
+}
+
+/*
+   2) Mobile navigation: force predictable contrast.
+*/
+@media (max-width: 1024px) {
+
+    .mobile-menu {
+        background-color: rgba(0, 0, 0, 0.94) !important;
+        color: #fff !important;
+        color-scheme: dark;
+    }
+
+    .mobile-menu-nav,
+    .mobile-nav-group,
+    .mobile-nav-row,
+    .mobile-submenu,
+    .mobile-submenu-inner {
+        color: #fff !important;
+    }
+
+    .mobile-menu-link,
+    .mobile-parent-toggle,
+    .mobile-submenu-toggle,
+    .mobile-submenu-link,
+    .mobile-instagram-link {
+        color: #fff !important;
+        -webkit-text-fill-color: #fff;
+    }
+
+    .mobile-parent-toggle,
+    .mobile-submenu-toggle,
+    .mobile-menu-toggle {
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .mobile-submenu-link {
+        opacity: 0.82;
+    }
+
+    .mobile-submenu-link:hover,
+    .mobile-submenu-link:focus-visible,
+    .mobile-menu-link:hover,
+    .mobile-menu-link:focus-visible {
+        color: #fff !important;
+        -webkit-text-fill-color: #fff;
+        opacity: 1;
+    }
+}
+
+/*
+   3) Cross-platform arrows.
+   Hide font-dependent glyphs and draw arrows in CSS.
+*/
+
+.project-navigation-arrow,
+.project-lightbox-arrow {
+    font-size: 0 !important;
+}
+
+/* Previous / next project arrows */
+.project-navigation-arrow {
+    position: relative;
+    width: 18px;
+    height: 12px;
+}
+
+.project-navigation-arrow::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 15px;
+    height: 1px;
+    background: currentColor;
+    transform: translateY(-50%);
+}
+
+.project-navigation-arrow::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+}
+
+/* Previous */
+.project-navigation-item--previous .project-navigation-arrow::before {
+    left: 2px;
+}
+
+.project-navigation-item--previous .project-navigation-arrow::after {
+    left: 1px;
+    transform: translateY(-50%) rotate(-135deg);
+}
+
+/* Next */
+.project-navigation-item--next .project-navigation-arrow::before {
+    right: 2px;
+}
+
+.project-navigation-item--next .project-navigation-arrow::after {
+    right: 1px;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+/* Lightbox arrows */
+.project-lightbox-arrow::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 1.5px solid currentColor;
+    border-right: 1.5px solid currentColor;
+}
+
+.project-lightbox-arrow-left::before {
+    transform: rotate(-135deg);
+    margin-left: 4px;
+}
+
+.project-lightbox-arrow-right::before {
+    transform: rotate(45deg);
+    margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+
+    .project-lightbox-arrow {
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background-color: rgba(0, 0, 0, 0.62);
+        color: rgba(255, 255, 255, 0.92);
+    }
+
+    .project-navigation-arrow {
+        color: rgba(255, 255, 255, 0.58);
+    }
+}
+
+/* === JDS MOBILE DARK-MODE + ARROWS FIX END === */

@@ -23,3 +23,7 @@ node_modules/
 *.swp
 *~
 VIMEO_STATUS.txt
+_tools/
+*.command
+*_BACKUP_*/
+*.zip

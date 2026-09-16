@@ -14,7 +14,7 @@ const projects = [
         title: "BOUM!",
         category: "films",
         image: "images/boom-poster.png",
-        url: "projects/boom.html",
+        url: "projects/films/boom.html",
 
         gallery: [
             {
@@ -61,7 +61,7 @@ const projects = [
         title: "PEGI-13",
         category: "films",
         image: "images/pegi13-poster.jpg",
-        url: "projects/pegi-13.html",
+        url: "projects/films/pegi-13.html",
 
         gallery: [
             {
@@ -101,7 +101,7 @@ const projects = [
         title: "ANTICHAMBRE À LOUER",
         category: "films",
         image: "images/antichambre_a_louer-poster.jpg",
-        url: "projects/antichambre-a-louer.html",
+        url: "projects/films/antichambre-a-louer.html",
 
         gallery: [
             {
@@ -155,7 +155,7 @@ const projects = [
         title: "FIRE CRACKER",
         category: "music-videos",
         image: "images/fire-cracker-poster.jpg",
-        url: "projects/fire-cracker.html",
+        url: "projects/music-videos/fire-cracker.html",
 
         gallery: [
             {
@@ -195,7 +195,7 @@ const projects = [
         title: "DÉLUGE",
         category: "music-videos",
         image: "images/deluge-poster.jpg",
-        url: "projects/deluge.html",
+        url: "projects/music-videos/deluge.html",
 
         gallery: [
             {
@@ -243,7 +243,7 @@ const projects = [
         title: "AMISTAD",
         category: "music-videos",
         image: "images/amistad-poster.jpg",
-        url: "projects/amistad.html",
+        url: "projects/music-videos/amistad.html",
 
         gallery: [
             {
@@ -287,7 +287,7 @@ const projects = [
         title: "ECHOES",
         category: "music-videos",
         image: "images/echoes-poster.jpg",
-        url: "projects/echoes.html",
+        url: "projects/music-videos/echoes.html",
 
         gallery: [
             {
@@ -329,7 +329,7 @@ const projects = [
         title: "LALALA",
         category: "music-videos",
         image: "images/lalala-poster.jpg",
-        url: "projects/lalala.html",
+        url: "projects/music-videos/lalala.html",
 
         gallery: [
             {
@@ -376,7 +376,7 @@ const projects = [
         title: "400 COUPS",
         category: "music-videos",
         image: "images/400coups-poster.jpg",
-        url: "projects/400-coups.html",
+        url: "projects/music-videos/400-coups.html",
 
         gallery: [
             {
@@ -422,7 +422,7 @@ const projects = [
         title: "A&M",
         category: "music-videos",
         image: "images/a-m-poster.jpg",
-        url: "projects/a-m.html",
+        url: "projects/music-videos/a-m.html",
 
         gallery: [
             {
@@ -476,7 +476,7 @@ const projects = [
         title: "70HIVERS",
         category: "music-videos",
         image: "images/70hivers-poster.png",
-        url: "projects/70hivers.html",
+        url: "projects/music-videos/70hivers.html",
 
         gallery: [
             {
@@ -519,7 +519,7 @@ const projects = [
         title: "MBA LIVE SESSION",
         category: "music-videos",
         image: "images/mba-live-session-poster.jpg",
-        url: "projects/mba-live-session.html",
+        url: "projects/music-videos/mba-live-session.html",
 
         gallery: [
             {
@@ -575,7 +575,7 @@ const projects = [
         title: "VISA",
         category: "music-videos",
         image: "images/visa-poster.jpg",
-        url: "projects/visa.html",
+        url: "projects/music-videos/visa.html",
 
         gallery: [
             {
@@ -625,7 +625,7 @@ const projects = [
         title: "BEAU",
         category: "music-videos",
         image: "images/beau-poster.jpg",
-        url: "projects/beau.html",
+        url: "projects/music-videos/beau.html",
 
         gallery: [
             {
@@ -678,7 +678,7 @@ const projects = [
         title: "RACKS",
         category: "music-videos",
         image: "images/racks-poster.png",
-        url: "projects/racks.html",
+        url: "projects/music-videos/racks.html",
 
         gallery: [
             {
@@ -739,7 +739,7 @@ const projects = [
         title: "\"LATE CHECKOUT\"",
         category: "commercials",
         image: "images/latecheckout-poster.jpg",
-        url: "projects/late-checkout.html",
+        url: "projects/commercials/late-checkout.html",
 
         gallery: [
             {
@@ -798,7 +798,7 @@ const projects = [
         title: "\"HOT SPRING\"",
         category: "commercials",
         image: "images/hotspring-poster.jpg",
-        url: "projects/hot-spring.html",
+        url: "projects/commercials/hot-spring.html",
 
         gallery: [
             {
@@ -895,7 +895,7 @@ const projects = [
         title: "\"À RACINES ÉGALES\"",
         category: "commercials",
         image: "images/a-racines-egales-poster.jpg",
-        url: "projects/a-racines-egales.html",
+        url: "projects/commercials/a-racines-egales.html",
 
         gallery: [
             {
@@ -943,7 +943,7 @@ const projects = [
         title: "\"COLLECTION SHIFTING DUNES\" AW22.23",
         category: "commercials",
         image: "images/csd-poster.jpg",
-        url: "projects/collection-shifting-dunes-aw22-23.html",
+        url: "projects/commercials/collection-shifting-dunes-aw22-23.html",
 
         gallery: [
             {
