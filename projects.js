@@ -148,45 +148,47 @@ const projects = [
        MUSIC VIDEOS
        ========================= */
 
-    {
-        slug: "fire-cracker",
-        artist: "Émilie Franco",
-        director: "Yannick BLACK",
-        title: "FIRE CRACKER",
-        category: "music-videos",
-        image: "images/fire-cracker-poster.jpg",
-        url: "projects/music-videos/fire-cracker.html",
-
-        gallery: [
-            {
-                type: "vimeo",
-                id: "",
-                poster: "images/fire-cracker-poster.jpg"
-            },
-
-            { type: "image", src: "images/fire-cracker/fire-cracker01.jpg", alt: "FIRE CRACKER — Still 01" },
-            { type: "image", src: "images/fire-cracker/fire-cracker02.jpg", alt: "FIRE CRACKER — Still 02" },
-            { type: "image", src: "images/fire-cracker/fire-cracker03.jpg", alt: "FIRE CRACKER — Still 03" },
-            { type: "image", src: "images/fire-cracker/fire-cracker04.jpg", alt: "FIRE CRACKER — Still 04" },
-        ],
-
-        details: [
-            { label: "Title", value: "FIRE CRACKER" },
-            { label: "Artist", value: "Émilie Franco" },
-            { label: "Year", value: "2026" },
-            { label: "Production", value: "HEMERA" },
-            { label: "Camera", value: "Sony Venice" },
-            { label: "Lenses", value: "Zeiss Standard Prime T2.1" },
-            { label: "Format", value: "4:3" }
-        ],
-
-        crew: [
-            { label: "Director", value: "Yannick BLACK" },
-            { label: "1st AC", value: "Camille GAINNET" },
-            { label: "Gaffer", value: "Lucas MARBACH" },
-            { label: "Steadicam Operator", value: "Camran NASSIRI" }
-        ]
-    },
+    // === JDS UNPUBLISHED fire-cracker START ===
+// {
+//         slug: "fire-cracker",
+//         artist: "Émilie Franco",
+//         director: "Yannick BLACK",
+//         title: "FIRE CRACKER",
+//         category: "music-videos",
+//         image: "images/fire-cracker-poster.jpg",
+//         url: "projects/music-videos/fire-cracker.html",
+//
+//         gallery: [
+//             {
+//                 type: "vimeo",
+//                 id: "",
+//                 poster: "images/fire-cracker-poster.jpg"
+//             },
+//
+//             { type: "image", src: "images/fire-cracker/fire-cracker01.jpg", alt: "FIRE CRACKER — Still 01" },
+//             { type: "image", src: "images/fire-cracker/fire-cracker02.jpg", alt: "FIRE CRACKER — Still 02" },
+//             { type: "image", src: "images/fire-cracker/fire-cracker03.jpg", alt: "FIRE CRACKER — Still 03" },
+//             { type: "image", src: "images/fire-cracker/fire-cracker04.jpg", alt: "FIRE CRACKER — Still 04" },
+//         ],
+//
+//         details: [
+//             { label: "Title", value: "FIRE CRACKER" },
+//             { label: "Artist", value: "Émilie Franco" },
+//             { label: "Year", value: "2026" },
+//             { label: "Production", value: "HEMERA" },
+//             { label: "Camera", value: "Sony Venice" },
+//             { label: "Lenses", value: "Zeiss Standard Prime T2.1" },
+//             { label: "Format", value: "4:3" }
+//         ],
+//
+//         crew: [
+//             { label: "Director", value: "Yannick BLACK" },
+//             { label: "1st AC", value: "Camille GAINNET" },
+//             { label: "Gaffer", value: "Lucas MARBACH" },
+//             { label: "Steadicam Operator", value: "Camran NASSIRI" }
+//         ]
+//     },
+// === JDS UNPUBLISHED fire-cracker END ===
 
     {
         slug: "deluge",
@@ -732,64 +734,66 @@ const projects = [
        COMMERCIALS
        ========================= */
 
-    {
-        slug: "late-checkout",
-        client: "BELLEROSE",
-        director: "Misha VAN DER WERF",
-        title: "\"LATE CHECKOUT\"",
-        category: "commercials",
-        image: "images/latecheckout-poster.jpg",
-        url: "projects/commercials/late-checkout.html",
-
-        gallery: [
-            {
-                type: "vimeo",
-                id: "",
-                poster: "images/latecheckout-poster.jpg"
-            },
-            { type: "image", src: "images/latecheckout/latecheckout_01.jpg", alt: "LATE CHECKOUT — Still 01" },
-            { type: "image", src: "images/latecheckout/latecheckout_02.jpg", alt: "LATE CHECKOUT — Still 02" },
-            { type: "image", src: "images/latecheckout/latecheckout_03.jpg", alt: "LATE CHECKOUT — Still 03" },
-            { type: "image", src: "images/latecheckout/latecheckout_04.jpg", alt: "LATE CHECKOUT — Still 04" },
-            { type: "image", src: "images/latecheckout/latecheckout_05.jpg", alt: "LATE CHECKOUT — Still 05" },
-            { type: "image", src: "images/latecheckout/latecheckout_06.jpg", alt: "LATE CHECKOUT — Still 06" },
-            { type: "image", src: "images/latecheckout/latecheckout_07.jpg", alt: "LATE CHECKOUT — Still 07" },
-            { type: "image", src: "images/latecheckout/latecheckout_08.jpg", alt: "LATE CHECKOUT — Still 08" },
-            { type: "image", src: "images/latecheckout/latecheckout_09.jpg", alt: "LATE CHECKOUT — Still 09" },
-            { type: "image", src: "images/latecheckout/latecheckout_10.jpg", alt: "LATE CHECKOUT — Still 10" },
-            { type: "image", src: "images/latecheckout/latecheckout_11.jpg", alt: "LATE CHECKOUT — Still 11" },
-            { type: "image", src: "images/latecheckout/latecheckout_12.jpg", alt: "LATE CHECKOUT — Still 12" },
-            { type: "image", src: "images/latecheckout/latecheckout_13.jpg", alt: "LATE CHECKOUT — Still 13" },
-            { type: "image", src: "images/latecheckout/latecheckout_14.jpg", alt: "LATE CHECKOUT — Still 14" },
-            { type: "image", src: "images/latecheckout/latecheckout_15.jpg", alt: "LATE CHECKOUT — Still 15" },
-            { type: "image", src: "images/latecheckout/latecheckout_16.jpg", alt: "LATE CHECKOUT — Still 16" },
-            { type: "image", src: "images/latecheckout/latecheckout_17.jpg", alt: "LATE CHECKOUT — Still 17" },
-            { type: "image", src: "images/latecheckout/latecheckout_18.jpg", alt: "LATE CHECKOUT — Still 18" },
-            { type: "image", src: "images/latecheckout/latecheckout_19.jpg", alt: "LATE CHECKOUT — Still 19" },
-            { type: "image", src: "images/latecheckout/latecheckout_20.jpg", alt: "LATE CHECKOUT — Still 20" },
-            { type: "image", src: "images/latecheckout/latecheckout_21.jpg", alt: "LATE CHECKOUT — Still 21" },
-            { type: "image", src: "images/latecheckout/latecheckout_22.jpg", alt: "LATE CHECKOUT — Still 22" },
-            { type: "image", src: "images/latecheckout/latecheckout_23.jpg", alt: "LATE CHECKOUT — Still 23" },
-            { type: "image", src: "images/latecheckout/latecheckout_24.jpg", alt: "LATE CHECKOUT — Still 24" },
-            { type: "image", src: "images/latecheckout/latecheckout_25.jpg", alt: "LATE CHECKOUT — Still 25" },
-            { type: "image", src: "images/latecheckout/latecheckout_26.jpg", alt: "LATE CHECKOUT — Still 26" },
-        ],
-
-        details: [
-            { label: "Title", value: "LATE CHECKOUT" },
-            { label: "Client", value: "BELLEROSE" },
-            { label: "Year", value: "2026" },
-            { label: "Production", value: "Hemera" },
-            { label: "Camera", value: "Sony Venice" },
-            { label: "Lenses", value: "Zeiss Variable Prime 1 16-30mm T2.2" },
-            { label: "Format", value: "4:3" }
-        ],
-
-        crew: [
-            { label: "Director", value: "Misha VAN DER WERF" },
-            { label: "Gaffer", value: "Antoine DE PERETTI" },
-        ]
-    },
+    // === JDS UNPUBLISHED late-checkout START ===
+// {
+//         slug: "late-checkout",
+//         client: "BELLEROSE",
+//         director: "Misha VAN DER WERF",
+//         title: "\"LATE CHECKOUT\"",
+//         category: "commercials",
+//         image: "images/latecheckout-poster.jpg",
+//         url: "projects/commercials/late-checkout.html",
+//
+//         gallery: [
+//             {
+//                 type: "vimeo",
+//                 id: "",
+//                 poster: "images/latecheckout-poster.jpg"
+//             },
+//             { type: "image", src: "images/latecheckout/latecheckout_01.jpg", alt: "LATE CHECKOUT — Still 01" },
+//             { type: "image", src: "images/latecheckout/latecheckout_02.jpg", alt: "LATE CHECKOUT — Still 02" },
+//             { type: "image", src: "images/latecheckout/latecheckout_03.jpg", alt: "LATE CHECKOUT — Still 03" },
+//             { type: "image", src: "images/latecheckout/latecheckout_04.jpg", alt: "LATE CHECKOUT — Still 04" },
+//             { type: "image", src: "images/latecheckout/latecheckout_05.jpg", alt: "LATE CHECKOUT — Still 05" },
+//             { type: "image", src: "images/latecheckout/latecheckout_06.jpg", alt: "LATE CHECKOUT — Still 06" },
+//             { type: "image", src: "images/latecheckout/latecheckout_07.jpg", alt: "LATE CHECKOUT — Still 07" },
+//             { type: "image", src: "images/latecheckout/latecheckout_08.jpg", alt: "LATE CHECKOUT — Still 08" },
+//             { type: "image", src: "images/latecheckout/latecheckout_09.jpg", alt: "LATE CHECKOUT — Still 09" },
+//             { type: "image", src: "images/latecheckout/latecheckout_10.jpg", alt: "LATE CHECKOUT — Still 10" },
+//             { type: "image", src: "images/latecheckout/latecheckout_11.jpg", alt: "LATE CHECKOUT — Still 11" },
+//             { type: "image", src: "images/latecheckout/latecheckout_12.jpg", alt: "LATE CHECKOUT — Still 12" },
+//             { type: "image", src: "images/latecheckout/latecheckout_13.jpg", alt: "LATE CHECKOUT — Still 13" },
+//             { type: "image", src: "images/latecheckout/latecheckout_14.jpg", alt: "LATE CHECKOUT — Still 14" },
+//             { type: "image", src: "images/latecheckout/latecheckout_15.jpg", alt: "LATE CHECKOUT — Still 15" },
+//             { type: "image", src: "images/latecheckout/latecheckout_16.jpg", alt: "LATE CHECKOUT — Still 16" },
+//             { type: "image", src: "images/latecheckout/latecheckout_17.jpg", alt: "LATE CHECKOUT — Still 17" },
+//             { type: "image", src: "images/latecheckout/latecheckout_18.jpg", alt: "LATE CHECKOUT — Still 18" },
+//             { type: "image", src: "images/latecheckout/latecheckout_19.jpg", alt: "LATE CHECKOUT — Still 19" },
+//             { type: "image", src: "images/latecheckout/latecheckout_20.jpg", alt: "LATE CHECKOUT — Still 20" },
+//             { type: "image", src: "images/latecheckout/latecheckout_21.jpg", alt: "LATE CHECKOUT — Still 21" },
+//             { type: "image", src: "images/latecheckout/latecheckout_22.jpg", alt: "LATE CHECKOUT — Still 22" },
+//             { type: "image", src: "images/latecheckout/latecheckout_23.jpg", alt: "LATE CHECKOUT — Still 23" },
+//             { type: "image", src: "images/latecheckout/latecheckout_24.jpg", alt: "LATE CHECKOUT — Still 24" },
+//             { type: "image", src: "images/latecheckout/latecheckout_25.jpg", alt: "LATE CHECKOUT — Still 25" },
+//             { type: "image", src: "images/latecheckout/latecheckout_26.jpg", alt: "LATE CHECKOUT — Still 26" },
+//         ],
+//
+//         details: [
+//             { label: "Title", value: "LATE CHECKOUT" },
+//             { label: "Client", value: "BELLEROSE" },
+//             { label: "Year", value: "2026" },
+//             { label: "Production", value: "Hemera" },
+//             { label: "Camera", value: "Sony Venice" },
+//             { label: "Lenses", value: "Zeiss Variable Prime 1 16-30mm T2.2" },
+//             { label: "Format", value: "4:3" }
+//         ],
+//
+//         crew: [
+//             { label: "Director", value: "Misha VAN DER WERF" },
+//             { label: "Gaffer", value: "Antoine DE PERETTI" },
+//         ]
+//     },
+// === JDS UNPUBLISHED late-checkout END ===
 
     {
         slug: "hot-spring",
