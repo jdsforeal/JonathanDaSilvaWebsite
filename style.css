@@ -2754,3 +2754,61 @@ html {
 }
 
 /* === JDS MOBILE DARK-MODE + ARROWS FIX END === */
+
+/* === JDS FULLSCREEN ICON FIX START === */
+
+.project-video-fullscreen {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding-right: 28px;
+}
+
+/* Cross-platform ↗ icon drawn in CSS */
+.project-video-fullscreen::after {
+    content: "";
+    position: absolute;
+    right: 11px;
+    top: 50%;
+
+    width: 8px;
+    height: 8px;
+
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+
+    transform: translateY(-55%);
+}
+
+.project-video-fullscreen::before {
+    content: "";
+    position: absolute;
+    right: 13px;
+    top: 50%;
+
+    width: 9px;
+    height: 1px;
+    background: currentColor;
+
+    transform: translateY(1px) rotate(-45deg);
+    transform-origin: right center;
+}
+
+@media (max-width: 768px) {
+    .project-video-fullscreen {
+        gap: 6px;
+        padding-right: 26px;
+    }
+
+    .project-video-fullscreen::after {
+        width: 7px;
+        height: 7px;
+    }
+
+    .project-video-fullscreen::before {
+        width: 8px;
+    }
+}
+
+/* === JDS FULLSCREEN ICON FIX END === */

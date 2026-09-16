@@ -551,7 +551,7 @@ function createGallerySlide(item, index) {
             fullscreenButton.className = "project-video-fullscreen";
             fullscreenButton.type = "button";
             fullscreenButton.setAttribute("aria-label", "Open video fullscreen");
-            fullscreenButton.textContent = "FULLSCREEN ↗";
+            fullscreenButton.textContent = "FULLSCREEN";
 
             let vimeoPlayer = null;
 
