@@ -2601,35 +2601,18 @@ button:focus-visible {
     }
 }
 
-/* === JDS MOBILE DARK-MODE + ARROWS FIX START === */
+/* === JDS TARGETED MOBILE ICON FIX START === */
 
-/*
-   1) Explicitly declare the site as a dark interface.
-   This prevents mobile browsers from trying to reinterpret
-   the navigation colors when the phone/browser is in dark mode.
-*/
 html {
     color-scheme: dark;
     background-color: #000;
 }
 
-/*
-   2) Mobile navigation: force predictable contrast.
-*/
 @media (max-width: 1024px) {
-
     .mobile-menu {
         background-color: rgba(0, 0, 0, 0.94) !important;
         color: #fff !important;
         color-scheme: dark;
-    }
-
-    .mobile-menu-nav,
-    .mobile-nav-group,
-    .mobile-nav-row,
-    .mobile-submenu,
-    .mobile-submenu-inner {
-        color: #fff !important;
     }
 
     .mobile-menu-link,
@@ -2647,168 +2630,80 @@ html {
         -webkit-appearance: none;
         appearance: none;
     }
-
-    .mobile-submenu-link {
-        opacity: 0.82;
-    }
-
-    .mobile-submenu-link:hover,
-    .mobile-submenu-link:focus-visible,
-    .mobile-menu-link:hover,
-    .mobile-menu-link:focus-visible {
-        color: #fff !important;
-        -webkit-text-fill-color: #fff;
-        opacity: 1;
-    }
 }
 
-/*
-   3) Cross-platform arrows.
-   Hide font-dependent glyphs and draw arrows in CSS.
-*/
-
-.project-navigation-arrow,
-.project-lightbox-arrow {
-    font-size: 0 !important;
-}
-
-/* Previous / next project arrows */
-.project-navigation-arrow {
+/* PROFILE: Selected Work / Full Credits */
+.profile-page .profile-text-link span[aria-hidden="true"] {
     position: relative;
-    width: 18px;
-    height: 12px;
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    flex: 0 0 11px;
+    font-size: 0;
+    transition: transform 0.25s ease;
 }
 
-.project-navigation-arrow::before {
+.profile-page .profile-text-link span[aria-hidden="true"]::before {
     content: "";
     position: absolute;
-    top: 50%;
-    width: 15px;
-    height: 1px;
-    background: currentColor;
-    transform: translateY(-50%);
-}
-
-.project-navigation-arrow::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 6px;
-    height: 6px;
+    top: 1px;
+    right: 0;
+    width: 7px;
+    height: 7px;
     border-top: 1px solid currentColor;
     border-right: 1px solid currentColor;
 }
 
-/* Previous */
-.project-navigation-item--previous .project-navigation-arrow::before {
-    left: 2px;
-}
-
-.project-navigation-item--previous .project-navigation-arrow::after {
-    left: 1px;
-    transform: translateY(-50%) rotate(-135deg);
-}
-
-/* Next */
-.project-navigation-item--next .project-navigation-arrow::before {
-    right: 2px;
-}
-
-.project-navigation-item--next .project-navigation-arrow::after {
-    right: 1px;
-    transform: translateY(-50%) rotate(45deg);
-}
-
-/* Lightbox arrows */
-.project-lightbox-arrow::before {
+.profile-page .profile-text-link span[aria-hidden="true"]::after {
     content: "";
+    position: absolute;
+    top: 5px;
+    left: 0;
     width: 10px;
-    height: 10px;
-    border-top: 1.5px solid currentColor;
-    border-right: 1.5px solid currentColor;
+    height: 1px;
+    background: currentColor;
+    transform: rotate(-45deg);
+    transform-origin: center;
 }
 
-.project-lightbox-arrow-left::before {
-    transform: rotate(-135deg);
-    margin-left: 4px;
+.profile-page .profile-text-link:hover span[aria-hidden="true"] {
+    transform: translate(3px, -3px);
 }
 
-.project-lightbox-arrow-right::before {
-    transform: rotate(45deg);
-    margin-right: 4px;
-}
-
-@media (max-width: 768px) {
-
-    .project-lightbox-arrow {
-        width: 40px;
-        height: 40px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background-color: rgba(0, 0, 0, 0.62);
-        color: rgba(255, 255, 255, 0.92);
-    }
-
-    .project-navigation-arrow {
-        color: rgba(255, 255, 255, 0.58);
-    }
-}
-
-/* === JDS MOBILE DARK-MODE + ARROWS FIX END === */
-
-/* === JDS FULLSCREEN ICON FIX START === */
-
+/* VIMEO FULLSCREEN ONLY */
 .project-video-fullscreen {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 7px;
-    padding-right: 28px;
 }
 
-/* Cross-platform ↗ icon drawn in CSS */
 .project-video-fullscreen::after {
     content: "";
-    position: absolute;
-    right: 11px;
-    top: 50%;
-
+    position: relative;
     width: 8px;
     height: 8px;
-
     border-top: 1px solid currentColor;
     border-right: 1px solid currentColor;
-
-    transform: translateY(-55%);
+    flex: 0 0 8px;
 }
 
 .project-video-fullscreen::before {
     content: "";
     position: absolute;
-    right: 13px;
-    top: 50%;
-
     width: 9px;
     height: 1px;
+    right: 9px;
     background: currentColor;
-
-    transform: translateY(1px) rotate(-45deg);
-    transform-origin: right center;
+    transform: translate(-2px, 2px) rotate(-45deg);
+    transform-origin: center;
 }
 
-@media (max-width: 768px) {
-    .project-video-fullscreen {
-        gap: 6px;
-        padding-right: 26px;
-    }
+/*
+   Deliberately no override for:
+   .project-lightbox-arrow
+   .project-navigation-arrow
+   Their original arrows stay intact.
+*/
 
-    .project-video-fullscreen::after {
-        width: 7px;
-        height: 7px;
-    }
-
-    .project-video-fullscreen::before {
-        width: 8px;
-    }
-}
-
-/* === JDS FULLSCREEN ICON FIX END === */
+/* === JDS TARGETED MOBILE ICON FIX END === */
