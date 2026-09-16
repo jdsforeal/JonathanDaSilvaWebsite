@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /JonathanDaSilvaWebsite/projects/_templates/
 
-Sitemap: https://jdsforeal.github.io/JonathanDaSilvaWebsite/sitemap.xml
+Sitemap: https://jonathandasilva.tv/sitemap.xml
