@@ -295,6 +295,7 @@ function getVimeoEmbedUrl(item) {
     params.set("byline", "0");
     params.set("autopause", "1");
     params.set("dnt", "1");
+    params.set("transparent", "0");
     params.set("fullscreen", "1");
 
     return (
