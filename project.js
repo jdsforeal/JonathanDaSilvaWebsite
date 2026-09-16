@@ -551,7 +551,24 @@ function createGallerySlide(item, index) {
             fullscreenButton.className = "project-video-fullscreen";
             fullscreenButton.type = "button";
             fullscreenButton.setAttribute("aria-label", "Open video fullscreen");
-            fullscreenButton.textContent = "FULLSCREEN";
+            fullscreenButton.innerHTML = `
+                <span class="project-video-fullscreen-label">FULLSCREEN</span>
+                <svg
+                    class="project-video-fullscreen-icon"
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                    focusable="false"
+                >
+                    <path
+                        d="M7 3H3v4 M13 3h4v4 M17 13v4h-4 M7 17H3v-4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="square"
+                        stroke-linejoin="miter"
+                    />
+                </svg>
+            `;
 
             let vimeoPlayer = null;
 

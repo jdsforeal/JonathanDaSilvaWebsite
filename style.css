@@ -2781,3 +2781,52 @@ html {
 }
 
 /* === JDS FULLSCREEN CORNERS ICON END === */
+
+/* === JDS FULLSCREEN SVG ICON START === */
+
+/*
+   Final fullscreen icon.
+   Uses an inline SVG instead of Unicode or CSS pseudo-elements.
+   This keeps the icon crisp and identical across browsers/devices.
+*/
+
+.project-video-fullscreen {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+/* Kill every older fullscreen pseudo-icon cleanly. */
+.project-video-fullscreen::before,
+.project-video-fullscreen::after {
+    content: none !important;
+    display: none !important;
+}
+
+.project-video-fullscreen-label {
+    display: block;
+}
+
+.project-video-fullscreen-icon {
+    display: block;
+    width: 13px;
+    height: 13px;
+    flex: 0 0 13px;
+    color: currentColor;
+    overflow: visible;
+}
+
+@media (max-width: 768px) {
+    .project-video-fullscreen {
+        gap: 7px;
+    }
+
+    .project-video-fullscreen-icon {
+        width: 14px;
+        height: 14px;
+        flex-basis: 14px;
+    }
+}
+
+/* === JDS FULLSCREEN SVG ICON END === */
